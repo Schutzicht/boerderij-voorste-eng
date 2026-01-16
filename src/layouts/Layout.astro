@@ -31,7 +31,7 @@ const lang = getLangFromUrl(Astro.url);
 	</head>
 	<body class="font-body bg-stone-50 text-stone-800 antialiased flex flex-col min-h-screen relative">
 
-		<Navbar />
+		<Navbar lang={lang} />
 		<main class="flex-grow z-10 relative">
 			<slot />
 		</main>

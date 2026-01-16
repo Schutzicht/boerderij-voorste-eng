@@ -29,12 +29,14 @@ const navItems = {
 const currentNav = navItems[lang] || navItems.nl;
 ---
 
-<nav class="bg-foam-white/90 backdrop-blur-md shadow-sm fixed w-full z-50 transition-all duration-300 border-b border-dune-sand/30">
+<nav class="bg-foam-white/90 backdrop-blur-md shadow-sm fixed w-full z-50 transition-all duration-300 border-b border-dune-sand/30" x-data="{ mobileMenuOpen: false }">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-20 items-center">
-      <div class="flex-shrink-0 flex items-center">
+      <div class="flex-shrink-0 flex items-center z-50">
         <Logo class="text-sea-blue hover:text-sky-700 transition-colors" />
       </div>
+      
+      <!-- Desktop Menu -->
       <div class="hidden md:ml-6 md:flex md:space-x-8">
         {currentNav.map((item) => (
           <a
@@ -46,15 +48,92 @@ const currentNav = navItems[lang] || navItems.nl;
           </a>
         ))}
       </div>
-      <div class="flex items-center space-x-4">
+      
+      <!-- Desktop Language Selector -->
+      <div class="hidden md:flex items-center space-x-4">
         <a href="/nl" class={`text-sm font-semibold transition-colors ${lang === 'nl' ? 'text-sea-blue' : 'text-slate-400 hover:text-sea-blue'}`}>NL</a>
         <span class="text-dune-sand">|</span>
         <a href="/en" class={`text-sm font-semibold transition-colors ${lang === 'en' ? 'text-sea-blue' : 'text-slate-400 hover:text-sea-blue'}`}>EN</a>
         <span class="text-dune-sand">|</span>
         <a href="/de" class={`text-sm font-semibold transition-colors ${lang === 'de' ? 'text-sea-blue' : 'text-slate-400 hover:text-sea-blue'}`}>DE</a>
       </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center md:hidden z-50">
+        <button 
+          id="mobile-menu-btn"
+          type="button" 
+          class="text-sea-blue hover:text-sky-700 p-2 focus:outline-none" 
+          aria-label="Menu"
+        >
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div 
+    id="mobile-menu"
+    class="fixed inset-0 bg-white/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center items-center space-y-8"
+  >
+    <div class="absolute top-0 right-0 p-6 pt-5 pr-6">
+         <button 
+          id="close-menu-btn"
+          type="button" 
+          class="text-sea-blue hover:text-sky-700 p-2 focus:outline-none"
+        >
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Nav Links -->
+    <div class="flex flex-col space-y-6 text-center">
+      {currentNav.map((item) => (
+        <a
+          href={item.href}
+          class="text-2xl font-bold text-slate-800 hover:text-sea-blue transition-colors duration-200"
+        >
+          {item.name}
+        </a>
+      ))}
+    </div>
+
+    <!-- Mobile Language Selector -->
+    <div class="flex items-center space-x-6 pt-8 border-t border-gray-100 mt-8">
+        <a href="/nl" class={`text-lg font-semibold transition-colors ${lang === 'nl' ? 'text-sea-blue' : 'text-slate-400'}`}>NL</a>
+        <a href="/en" class={`text-lg font-semibold transition-colors ${lang === 'en' ? 'text-sea-blue' : 'text-slate-400'}`}>EN</a>
+        <a href="/de" class={`text-lg font-semibold transition-colors ${lang === 'de' ? 'text-sea-blue' : 'text-slate-400'}`}>DE</a>
     </div>
   </div>
 </nav>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('close-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuLinks = mobileMenu?.querySelectorAll('a');
+
+  function toggleMenu() {
+    mobileMenu?.classList.toggle('translate-x-full');
+    document.body.classList.toggle('overflow-hidden');
+  }
+
+  menuBtn?.addEventListener('click', toggleMenu);
+  closeBtn?.addEventListener('click', toggleMenu);
+
+  // Close menu when a link is clicked
+  menuLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+        if (!mobileMenu?.classList.contains('translate-x-full')) {
+            toggleMenu();
+        }
+    });
+  });
+</script>
 
 <div class="h-20"></div> <!-- Spacer -->
