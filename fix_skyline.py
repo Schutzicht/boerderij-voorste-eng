@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 # Source path
-src_path = "/Users/jorikschut/.gemini/antigravity/brain/edce318d-ef0c-4e17-90b4-6466e53cb62d/vlissingen_skyline_vector_check_1768512068772.png"
+src_path = "/Users/jorikschut/.gemini/antigravity/brain/edce318d-ef0c-4e17-90b4-6466e53cb62d/uploaded_image_1768581014999.png"
 out_path = "/Users/jorikschut/Documents/Projecten-sites/benb-next-to-sea/public/images/vlissingen-skyline-final.png"
 
 try:
