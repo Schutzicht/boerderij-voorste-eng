@@ -43,13 +43,27 @@ try:
     TARGET_HEIGHT = h 
     TARGET_WIDTH = w * 5
     
-    # UPSCALING (1.8x) to ensure 3 tiles cover 4k width
-    new_w = int(w * 1.8)
-    new_h = int(h * 1.8)
+    # UPSCALING (4x) with Thresholding for sharp edges
+    target_scale = 4.0
+    new_w = int(w * target_scale)
+    new_h = int(h * target_scale)
+    
+    # 1. High-quality upscale
     img = img.resize((new_w, new_h), Image.Resampling.LANCZOS)
-    w, h = img.size # Update w, h
+    
+    # 2. Thresholding to sharpen edges (remove blur from upscale)
+    # Convert alpha to numpy array
+    data = np.array(img)
+    alpha = data[:, :, 3]
+    
+    # Apply threshold: if alpha > 128, make it 255, else 0
+    # This vectorizes the "crisp edge" logic
+    alpha = np.where(alpha > 128, 255, 0).astype(np.uint8)
+    data[:, :, 3] = alpha
+    img = Image.fromarray(data)
 
-    print(f"Upscaled tile size: {w}x{h}")
+    w, h = img.size # Update w, h
+    print(f"Upscaled tile size: {w}x{h} (Crisp Edges)")
 
     # 4. Create Panorama (Symmetric: Flip - Original - Flip)
     # This creates a 3-tile wide panorama (~5000px) which is much less repetitive than 5x
