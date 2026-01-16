@@ -4,99 +4,61 @@ import os
 
 # Source path
 src_path = "/Users/jorikschut/.gemini/antigravity/brain/edce318d-ef0c-4e17-90b4-6466e53cb62d/uploaded_image_1768581014999.png"
-out_path = "/Users/jorikschut/Documents/Projecten-sites/benb-next-to-sea/public/images/vlissingen-skyline-final.png"
+out_path = "/Users/jorikschut/Documents/Projecten-sites/benb-next-to-sea/public/images/vlissingen-skyline-panorama.png"
 
 try:
-    img = Image.open(src_path).convert("RGBA")
-    print(f"Original Dimensions: {img.size} (Width x Height)")
+    img = Image.open(src_path).convert("RGB") # Start with RGB
+    print(f"Original Dimensions: {img.size}")
 
-    # 0. Make White Transparent (Crucial for proper cropping)
-    # Get alpha (or create it)
-    datas = img.getdata()
-    newData = []
-    for item in datas:
-        # If pixels are white (R>240, G>240, B>240), make transparent
-        if item[0] > 240 and item[1] > 240 and item[2] > 240:
-            newData.append((255, 255, 255, 0))
-        else:
-            newData.append(item)
-    img.putdata(newData)
+    # 1. SMART COLOR & ALPHA CONVERSION
+    # Instead of binary thresholding, we map darkness to opacity.
+    # This preserves anti-aliasing (smooth edges) derived from the original image.
     
-    # 1. Force Rotation if Vertical (unlikely if square, but keep check)
-    if img.height > img.width:
-        print("Image is taller than wide. Rotating -90 degrees...")
-        img = img.rotate(-90, expand=True)
+    # Invert image: White(255) -> 0 (Transparent), Black(0) -> 255 (Opaque)
+    # Using the 'L' (Luminance) channel as the alpha map.
+    grayscale = ImageOps.invert(img.convert("L"))
     
-    # 2. Trim whitespace (Crop to content)
-    # Now that white is transparent, getbbox works on alpha
+    # Create the target color block #0e4c92 (Sea Blue)
+    sea_blue_rgb = (14, 76, 146)
+    
+    # Create a solid color image of the same size
+    solid_color_img = Image.new("RGB", img.size, sea_blue_rgb)
+    
+    # Combine: Use the solid blue image, but apply the inverted grayscale as the Alpha channel
+    img = solid_color_img.copy()
+    img.putalpha(grayscale)
+    
+    # 2. Trim Whitespace (Crop to content based on new alpha)
     bbox = img.getbbox()
     if bbox:
         img = img.crop(bbox)
         print(f"Cropped to content: {bbox} -> {img.size}")
-    else:
-        print("Warning: Image seems empty after removing white.")
-
-    # 3. Create Panoramic Canvas (5x Width for 4K Coverage)
-    # Pattern: [Mirrored] [Original] [Mirrored] [Original] [Mirrored]
     
+    # 3. Create Panoramic Canvas
     w, h = img.size
-    TARGET_HEIGHT = h 
-    TARGET_WIDTH = w * 5
     
-    # UPSCALING (4x) with Thresholding for sharp edges
-    target_scale = 4.0
+    # UPSCALING (Using 2.5x for crispness without over-blurring)
+    # We rely on the natural anti-aliasing preserved above, so less extreme upscaling is needed
+    target_scale = 2.5
     new_w = int(w * target_scale)
     new_h = int(h * target_scale)
     
-    # 1. High-quality upscale
     img = img.resize((new_w, new_h), Image.Resampling.LANCZOS)
-    
-    # 2. Thresholding to sharpen edges (remove blur from upscale)
-    # Convert alpha to numpy array
-    data = np.array(img)
-    alpha = data[:, :, 3]
-    
-    # Apply threshold: if alpha > 128, make it 255, else 0
-    # This vectorizes the "crisp edge" logic
-    alpha = np.where(alpha > 128, 255, 0).astype(np.uint8)
-    data[:, :, 3] = alpha
-    img = Image.fromarray(data)
-
     w, h = img.size # Update w, h
-    print(f"Upscaled tile size: {w}x{h} (Crisp Edges)")
+    print(f"Upscaled tile size: {w}x{h} (Smooth Edges)")
 
     # 4. Create Panorama (Symmetric: Flip - Original - Flip)
-    # This creates a 3-tile wide panorama (~5000px) which is much less repetitive than 5x
     img_flipped = img.transpose(Image.FLIP_LEFT_RIGHT)
     
-    # Convert to numpy for easy concatenation
     img_arr = np.array(img)
     img_flipped_arr = np.array(img_flipped)
     
-    # Pattern: Mirror | Original | Mirror
     combined_arr = np.hstack([img_flipped_arr, img_arr, img_flipped_arr])
     
-    combined_skyline = Image.fromarray(combined_arr)
-
-    # 5. Colorize to Sea Blue #0e4c92
-    data = np.array(combined_skyline)
-    
-    # Vectorized mask operation
-    alpha_channel = data[:, :, 3]
-    mask = alpha_channel > 10
-    
-    target_color = [14, 76, 146]
-    
-    # Assign RGB colors where mask is True
-    data[mask, 0] = target_color[0]
-    data[mask, 1] = target_color[1]
-    data[mask, 2] = target_color[2]
-    
-    # 6. Save as PNG
-    out_path = "/Users/jorikschut/Documents/Projecten-sites/benb-next-to-sea/public/images/vlissingen-skyline-panorama.png"
-    final_img = Image.fromarray(data)
+    # 5. Save
+    final_img = Image.fromarray(combined_arr)
     final_img.save(out_path)
-    print(f"Saved panoramic skyline to {out_path}")
+    print(f"Saved smoothed panoramic skyline to {out_path}")
 
 except Exception as e:
     print(f"Error: {e}")
