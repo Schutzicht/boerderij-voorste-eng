@@ -1,17 +1,10 @@
 ---
 const { class: className = "", color = "default" } = Astro.props;
 ---
-  <a href="/" class={`group flex items-center gap-3 decoration-none ${className}`}>
-  <!-- Elegant Manor/Castle SVG Icon -->
-  <div class={`transition-colors duration-300 ${color === 'white' ? 'text-white' : 'text-sea-blue group-hover:text-sky-700'}`}>
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 2L8 6h8l-4-4z"/> <!-- Roof -->
-      <rect x="10" y="6" width="4" height="6"/> <!-- Tower Top -->
-      <path d="M4 20v-5h16v5"/> <!-- Base -->
-      <path d="M4 15L2 15l2-3h16l2 3l-2 0"/> <!-- Side Roofs -->
-      <path d="M10 12h4"/> <!-- Detail -->
-      <path d="M12 20v-3"/> <!-- Doorway hint -->
-    </svg>
+  <a href="/" class={`group flex items-center gap-4 decoration-none ${className}`}>
+  <!-- Luxury Monogram Icon -->
+  <div class={`relative w-12 h-12 flex items-center justify-center border border-current rounded-full transition-colors duration-300 ${color === 'white' ? 'text-white border-white/30' : 'text-sea-blue border-sea-blue/30'}`}>
+    <span class="font-heading font-normal text-xl translate-y-[1px] tracking-widest">VE</span>
   </div>
   <div class="flex flex-col select-none">
     <span class={`font-body text-[0.6rem] uppercase tracking-[0.25em] font-medium leading-none mb-0.5 ${color === 'white' ? 'text-white/80' : 'text-stone-500'}`}>
