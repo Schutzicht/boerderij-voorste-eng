@@ -16,51 +16,51 @@ const content = {
   nl: {
     title: "Contact",
     subtitle: "Wij horen graag van je",
-    desc: "Wilt u een reservering aanvragen, of heeft u vragen over onze kamers of faciliteiten? Wij helpen u graag verder om uw verblijf in Vlissingen onvergetelijk te maken.",
+    desc: "Wilt u een reservering aanvragen, of heeft u vragen over uw verblijf in 'De Oude Schuur' of 'De Peerdestal'? Wij staan klaar om u te helpen.",
     name: "Uw Naam",
     email: "E-mailadres",
     message: "Uw bericht",
     send: "Verstuur Bericht",
     addressTitle: "Locatie",
-    address: "Coosje Buskenstraat 88, 4381 LG Vlissingen, Nederland",
+    address: "Dorpsstraat 1, 6731 AA Otterlo, Nederland",
     contactTitle: "Direct Contact",
-    phone: "+31 6 40938788",
-    emailContact: "info@pensionmarijke.nl"
+    phone: "+31 (0)6 1234 5678",
+    emailContact: "info@voorste-eng.nl"
   },
   en: {
     title: "Contact",
     subtitle: "We'd love to hear from you",
-    desc: "Would you like to request a reservation, or do you have questions about our rooms or facilities? We are happy to help you make your stay in Vlissingen unforgettable.",
+    desc: "Would you like to request a reservation, or do you have questions about your stay in 'The Old Barn' or 'The Horse Stable'? We are here to help.",
     name: "Your Name",
     email: "Email Address",
     message: "Your Message",
     send: "Send Message",
     addressTitle: "Location",
-    address: "Coosje Buskenstraat 88, 4381 LG Vlissingen, The Netherlands",
+    address: "Dorpsstraat 1, 6731 AA Otterlo, The Netherlands",
     contactTitle: "Direct Contact",
-    phone: "+31 6 40938788",
-    emailContact: "info@pensionmarijke.nl"
+    phone: "+31 (0)6 1234 5678",
+    emailContact: "info@voorste-eng.nl"
   },
   de: {
     title: "Kontakt",
     subtitle: "Wir hören gerne von Ihnen",
-    desc: "Möchten Sie eine Reservierung anfragen, oder haben Sie Fragen zu unseren Zimmern oder Einrichtungen? Wir helfen Ihnen gerne weiter, um Ihren Aufenthalt in Vlissingen unvergesslich zu machen.",
+    desc: "Möchten Sie eine Reservierung anfragen, oder haben Sie Fragen zu Ihrem Aufenthalt in 'Die Alte Scheune' oder 'Der Pferdestall'? Wir sind für Sie da.",
     name: "Ihr Name",
     email: "E-Mail-Adresse",
     message: "Ihre Nachricht",
     send: "Nachricht Senden",
     addressTitle: "Standort",
-    address: "Coosje Buskenstraat 88, 4381 LG Vlissingen, Niederlande",
+    address: "Dorpsstraat 1, 6731 AA Otterlo, Niederlande",
     contactTitle: "Direkter Kontakt",
-    phone: "+31 6 40938788",
-    emailContact: "info@pensionmarijke.nl"
+    phone: "+31 (0)6 1234 5678",
+    emailContact: "info@voorste-eng.nl"
   }
 };
 
 const t = content[lang] || content.nl;
 ---
 
-<Layout title={`Next to Sea - ${t.title}`} lang={lang}>
+<Layout title={`Boerderij Voorste Eng - ${t.title}`} lang={lang}>
   <div class="relative min-h-screen bg-stone-50 pt-32 pb-24 overflow-hidden">
     <!-- Decorative Elements -->
     <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-white/40 blur-3xl rounded-full -mr-20 -mt-20"></div>
@@ -119,7 +119,7 @@ const t = content[lang] || content.nl;
             <div class="hidden lg:block">
                  <ScrollReveal animation="fade-up" delay={0.4}>
                      <div class="relative rounded-sm overflow-hidden aspect-video shadow-lg grayscale hover:grayscale-0 transition-all duration-700">
-                         <img src="/images/dunes.png" class="w-full h-full object-cover" alt="Vlissingen Dunes" />
+                         <img src="/images/veluwe_contact.png" class="w-full h-full object-cover" alt="Veluwe Scenic View" />
                          <div class="absolute inset-0 bg-sea-blue/10"></div>
                      </div>
                  </ScrollReveal>

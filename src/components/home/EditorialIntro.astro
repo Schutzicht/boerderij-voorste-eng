@@ -6,28 +6,28 @@ const { lang } = Astro.props;
 
 const content = {
   nl: {
-    title: "Gezellig & Gastvrij",
-    desc: "Pension Marijke is een gezellig familiepension in het hart van Vlissingen, op slechts 50 meter van de boulevard. Een ideale uitvalsbasis voor stranddagen, fietstochten langs de kust of een bezoek aan de stad. Met een afgesloten binnenplaats voor uw fietsen en een eenvoudige keuken voor algemeen gebruik, bieden wij alles voor een zorgeloos verblijf.",
-    stat1: "50m",
-    stat1Label: "Van de boulevard",
-    stat2: "Centrum",
-    stat2Label: "Midden in de stad"
+    title: "Rust & Natuur",
+    desc: "Boerderij Voorste Eng is meer dan een verblijf. Het is uw thuisbasis op de Veluwe. Gelegen in het hart van Otterlo, op loopafstand van Nationaal Park De Hoge Veluwe, biedt onze verbouwde boerderij een perfecte mix van luxe, comfort en natuur.",
+    stat1: "1 km",
+    stat1Label: "Hoge Veluwe",
+    stat2: "Privacy",
+    stat2Label: "Eigen terras"
   },
   en: {
-    title: "Cozy & Welcoming",
-    desc: "Pension Marijke is a cozy family pension in the heart of Vlissingen, just 50 meters from the boulevard. An ideal base for beach days, cycling tours along the coast, or a visit to the city. With a locked courtyard for your bikes and a simple kitchen for general use, we offer everything for a carefree stay.",
-    stat1: "50m",
-    stat1Label: "From the boulevard",
-    stat2: "Center",
-    stat2Label: "In the city center"
+    title: "Peace & Nature",
+    desc: "Boerderij Voorste Eng is more than a stay. It is your home base on the Veluwe. Located in the heart of Otterlo, within walking distance of National Park De Hoge Veluwe, our renovated farmhouse offers a perfect mix of luxury, comfort, and nature.",
+    stat1: "1 km",
+    stat1Label: "Hoge Veluwe",
+    stat2: "Privacy",
+    stat2Label: "Private terrace"
   },
   de: {
-    title: "Gemütlich & Gastfreundlich",
-    desc: "Pension Marijke ist eine gemütliche Familienpension im Herzen von Vlissingen, nur 50 Meter vom Boulevard entfernt. Ein idealer Ausgangspunkt für Strandtage, Radtouren entlang der Küste oder einen Besuch in der Stadt. Mit einem abgeschlossenen Innenhof für Ihre Fahrräder und einer einfachen Küche zur allgemeinen Nutzung bieten wir alles für einen sorgenfreien Aufenthalt.",
-    stat1: "50m",
-    stat1Label: "Vom Boulevard",
-    stat2: "Zentrum",
-    stat2Label: "Mitten in der Stadt"
+    title: "Ruhe & Natur",
+    desc: "Boerderij Voorste Eng ist mehr als ein Aufenthalt. Es ist Ihre Basis in der Veluwe. Im Herzen von Otterlo gelegen, nur wenige Gehminuten vom Nationalpark De Hoge Veluwe entfernt, bietet unser renovierter Bauernhof eine perfekte Mischung aus Luxus, Komfort und Natur.",
+    stat1: "1 km",
+    stat1Label: "Hoge Veluwe",
+    stat2: "Privatsphäre",
+    stat2Label: "Eigene Terrasse"
   }
 };
 
@@ -65,8 +65,8 @@ const t = content[lang] || content.nl;
       <div class="lg:col-span-7 order-1 lg:order-2">
          <div class="relative pl-0 lg:pl-12">
             <ParallaxImage 
-               src="/images/aerial-vlissingen.jpg" 
-               alt="Rust en Ruimte" 
+               src="/images/hoge_veluwe_park.png" 
+               alt="Rust en Natuur Veluwe" 
                height="h-[600px] md:h-[700px]" 
                class="rounded-none shadow-2xl"
             />

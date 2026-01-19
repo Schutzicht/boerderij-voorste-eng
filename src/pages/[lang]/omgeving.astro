@@ -16,8 +16,8 @@ const { lang } = Astro.params;
 const content = {
   nl: {
     title: "Omgeving",
-    headline: "Ontdek Vlissingen & Zeeland",
-    description: "Vlissingen is een stad met een rauw randje, rijke maritieme geschiedenis en een unieke ligging aan de Westerschelde. Next to Sea vormt de ideale uitvalsbasis om niet alleen de stad, maar de hele provincie Zeeland te verkennen.",
+    headline: "Ontdek Otterlo & De Veluwe",
+    description: "Otterlo is de parel van de Veluwe. Boerderij Voorste Eng vormt de ideale uitvalsbasis om de prachtige natuur, cultuur en historie van Gelderland te verkennen.",
     labels: {
       natuur: "Natuur",
       cultuur: "Cultuur",
@@ -27,47 +27,48 @@ const content = {
     spotsTitle: "Hotspots",
     spots: [
       { 
-        title: "Boulevard Vlissingen", 
-        desc: "De langste zeeboulevard van Nederland waar zeeschepen vlak langs de kust varen.", 
-        img: "/images/boulevard.jpg" 
+        title: "Nationaal Park De Hoge Veluwe", 
+        desc: "5.400 hectare natuurpark met bossen, heide en zandverstuivingen, direct om de hoek.", 
+        img: "/images/hoge_veluwe_park.png" 
       },
       { 
-        title: "Badstrand", 
-        desc: "Het populairste stadsstrand, perfect gelegen op het zuiden voor de meeste zonuren.", 
-        img: "/images/badstrand.jpg" 
+        title: "Kröller-Müller Museum", 
+        desc: "Wereldberoemd museum met de op één na grootste Van Gogh-verzameling ter wereld.", 
+        img: "/images/kroller_muller.png" 
       },
       { 
-        title: "Bellamypark", 
-        desc: "Het bruisende hart met terrassen, restaurants en evenementen.", 
-        img: "/images/bellamypark.jpg" 
+        title: "Jachthuis Sint Hubertus", 
+        desc: "Het iconische buitenverblijf van de familie Kröller-Müller, ontworpen door Berlage.", 
+        img: "/images/jachthuis_hubertus.png" 
+      },
+      { 
+        title: "Museonder", 
+        desc: "Het eerste ondergrondse museum ter wereld, geeft een uniek kijkje in de bodem.", 
+        img: "/images/museonder.png" 
       }
     ],
     dining: [
-      { name: "De Gevangentoren", desc: "Dineren in een monumentale toren met 360° uitzicht over zee.", img: "/images/gevangentoren.jpg" },
-      { name: "Brasserie BLVD", desc: "Hip paviljoen op het strand met prachtig uitzicht.", img: "/images/brasserie_blvd.png" },
-      { name: "De Gecroonde Liefde", desc: "Sfeervol visrestaurant aan het Bellamypark.", img: "/images/gecroonde_liefde.jpg" },
-      { name: "De Timmerfabriek", desc: "Culinair genieten in een industrieel historisch pand.", img: "/images/timmerfabriek.jpg" },
-      { name: "La Bella Cucina", desc: "Authentieke Italiaanse keuken en delicatessen.", img: "/images/la_bella_cucina.jpg" }
+      { name: "Restaurant De Waldhoorn", desc: "Gezellig eten in een klassieke boerderijsfeer.", img: "/images/restaurant_farmhouse.png" },
+      { name: "Cèpes", desc: "Culinair genieten met lokale producten in Hotel de Sterrenberg.", img: "/images/restaurant_fine.png" },
+      { name: "Grand Café Kröller", desc: "Heerlijke lunch of diner in hartje Otterlo.", img: "/images/restaurant_farmhouse.png" },
+      { name: "Carnegie Cottage", desc: "Sfeervol restaurant met terras en authentieke uitstraling.", img: "/images/restaurant_fine.png" }
     ],
     sights: [
-      { name: "MuZEEum", desc: "Maritiem museum in het prachtige Lampsinshuis.", img: "/images/muzeeum.jpg" },
-      { name: "Reptielenzoo Iguana", desc: "Grootste overdekte reptielenzoo van Europa.", img: "/images/iguana.jpg" },
-      { name: "Michiel de Ruyter", desc: "Het iconische standbeeld van de zeeheld op het Keizersbolwerk.", img: "/images/boulevard.jpg" },
-      { name: "De Oranjemolen", desc: "De enige molen in Nederland direct aan zee.", img: "/images/oranjemolen.jpg" },
-      { name: "Sint Jacobskerk", desc: "Oude Kerk uit de 14e eeuw, een baken in de stad.", img: "/images/sint_jacobskerk.jpg" }
+      { name: "Nederlands Tegelmuseum", desc: "Unieke collectie historische Nederlandse wandtegels.", img: "/images/tile_museum.png" },
+      { name: "Radio Kootwijk", desc: "Imposant zendstation in art-deco stijl midden op de heide.", img: "/images/radio_kootwijk.png" },
+      { name: "Uitkijktoren De Valouwe", desc: "Spectaculair uitzicht over de boomtoppen van de Veluwe.", img: "/images/observation_tower.png" },
+      { name: "Planken Wambuis", desc: "Uitgestrekt natuurgebied met wilde paarden en runderen.", img: "/images/wildlife_cows.png" }
     ],
     activities: [
-      { name: "Windorgel", desc: "Luister naar de klanken van de wind op de Nolledijk.", img: "/images/windorgel.jpg" },
-      { name: "Zonnetrein Zeeland", desc: "Ontdek Vlissingen en omgeving met deze elektrische trein.", img: "/images/zonnetrein.jpg" },
-      { name: "Nollestrand", desc: "Rustiger strand met de iconische slaaphuisjes.", img: "/images/duinen.jpg" },
-      { name: "CineCity", desc: "Bioscoop en locatie van filmfestival Film by the Sea.", img: "/images/dining_view.png" },
-      { name: "Wandelen in de Duinen", desc: "Prachtige wandelroutes door de duinen richting Dishoek.", img: "/images/duinen.jpg" }
+      { name: "Het Mosselsche Zand", desc: "Prachtige zandverstuiving om eindeloos te wandelen.", img: "/images/sand_drift.png" },
+      { name: "Zandverstuiving De Zanding", desc: "Natuurgebied direct aan de rand van Otterlo.", img: "/images/sand_drift.png" },
+      { name: "Belevenispad 't Eekhoorntje", desc: "Leuke wandelroute voor kinderen door het bos.", img: "/images/adventure_path.png" }
     ]
   },
   en: {
     title: "Surroundings",
-    headline: "Discover Vlissingen & Zeeland",
-    description: "Vlissingen is a city with a raw edge, rich maritime history, and a unique location on the Westerschelde. Next to Sea is the ideal base for exploring not only the city but the entire province of Zeeland.",
+    headline: "Discover Otterlo & The Veluwe",
+    description: "Otterlo is the pearl of the Veluwe. Boerderij Voorste Eng is the ideal base for exploring the beautiful nature, culture, and history of Gelderland.",
     labels: {
       natuur: "Nature",
       cultuur: "Culture",
@@ -80,47 +81,48 @@ const content = {
     spotsTitle: "Hotspots",
     spots: [
       { 
-        title: "Vlissingen Boulevard", 
-        desc: "The longest sea promenade in the Netherlands where sea ships sail right along the coast.", 
-        img: "/images/boulevard.jpg" 
+        title: "National Park De Hoge Veluwe", 
+        desc: "5,400 hectares of nature park with forests, heathlands, and sand drifts, right around the corner.", 
+        img: "/images/hoge_veluwe_park.png" 
       },
       { 
-        title: "Badstrand", 
-        desc: "The most popular urban beach, perfectly south-facing for the most sunshine hours.", 
-        img: "/images/badstrand.jpg" 
+        title: "Kröller-Müller Museum", 
+        desc: "World-famous museum with the second-largest Van Gogh collection in the world.", 
+        img: "/images/kroller_muller.png" 
       },
       { 
-        title: "Bellamypark", 
-        desc: "The vibrant heart with terraces, restaurants, and events.", 
-        img: "/images/bellamypark.jpg" 
+        title: "Jachthuis Sint Hubertus", 
+        desc: "The iconic country residence of the Kröller-Müller family, designed by Berlage.", 
+        img: "/images/jachthuis_hubertus.png" 
+      },
+      { 
+        title: "Museonder", 
+        desc: "The first underground museum in the world, offering a unique look into the soil.", 
+        img: "/images/museonder.png" 
       }
     ],
     dining: [
-      { name: "De Gevangentoren", desc: "Dining in a monumental tower with 360° views over the sea.", img: "/images/dining_view.png" },
-      { name: "Brasserie BLVD", desc: "Trendy pavilion on the beach with stunning views.", img: "/images/brasserie_blvd.png" },
-      { name: "De Gecroonde Liefde", desc: "Atmospheric seafood restaurant at Bellamypark.", img: "/images/gecroonde_liefde.jpg" },
-      { name: "De Timmerfabriek", desc: "Culinary enjoyment in an industrial historic building.", img: "/images/timmerfabriek.jpg" },
-      { name: "La Bella Cucina", desc: "Authentic Italian cuisine and delicacies.", img: "/images/la_bella_cucina.jpg" }
+      { name: "Restaurant De Waldhoorn", desc: "Cozy dining in a classic farmhouse atmosphere.", img: "/images/restaurant_farmhouse.png" },
+      { name: "Cèpes", desc: "Culinary enjoyment with local products in Hotel de Sterrenberg.", img: "/images/restaurant_fine.png" },
+      { name: "Grand Café Kröller", desc: "Delicious lunch or dinner in the heart of Otterlo.", img: "/images/restaurant_farmhouse.png" },
+      { name: "Carnegie Cottage", desc: "Atmospheric restaurant with terrace.", img: "/images/restaurant_fine.png" }
     ],
     sights: [
-      { name: "MuZEEum", desc: "Maritime museum in the beautiful Lampsins House.", img: "/images/museum.png" },
-      { name: "Reptile Zoo Iguana", desc: "Largest indoor reptile zoo in Europe.", img: "/images/museum.png" },
-      { name: "Michiel de Ruyter", desc: "The iconic statue of the naval hero on the Keizersbolwerk.", img: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/659346718.jpg?k=6beb5de73397d3f3562332a9f302d778ad3a07ffaba9871c801ce4b9a965ce20&o=" },
-      { name: "Oranjemolen", desc: "The only windmill in the Netherlands right by the sea.", img: "/images/oranjemolen.jpg" },
-      { name: "Saint Jacob's Church", desc: "Old Church from the 14th century, a beacon in the city.", img: "/images/sint_jacobskerk.png" }
+      { name: "Dutch Tile Museum", desc: "Unique collection of historical Dutch wall tiles.", img: "/images/tile_museum.png" },
+      { name: "Radio Kootwijk", desc: "Impressive art-deco transmitter station in the middle of the heath.", img: "/images/radio_kootwijk.png" },
+      { name: "Watchtower De Valouwe", desc: "Spectacular view over the treetops of the Veluwe.", img: "/images/observation_tower.png" },
+      { name: "Planken Wambuis", desc: "Extensive nature reserve with wild horses and cattle.", img: "/images/wildlife_cows.png" }
     ],
     activities: [
-      { name: "Wind Organ", desc: "Listen to the sounds of the wind on the Nolledijk.", img: "/images/windorgel.jpg" },
-      { name: "Solar Train Zeeland", desc: "Discover Vlissingen and surroundings with this electric train.", img: "/images/zonnetrein.jpg" },
-      { name: "Nollestrand", desc: "Quieter beach with iconic sleeping houses.", img: "/images/duinen.jpg" },
-      { name: "CineCity", desc: "Cinema and location of Film by the Sea festival.", img: "/images/dining_view.png" },
-      { name: "Dune Walking", desc: "Beautiful walking routes through the dunes towards Dishoek.", img: "/images/duinen.jpg" }
+      { name: "Het Mosselsche Zand", desc: "Beautiful sand drift for endless walking.", img: "/images/sand_drift.png" },
+      { name: "De Zanding Sand Drift", desc: "Nature area right on the edge of Otterlo.", img: "/images/sand_drift.png" },
+      { name: "Adventure Path 't Eekhoorntje", desc: "Fun walking route for children through the forest.", img: "/images/adventure_path.png" }
     ]
   },
   de: {
     title: "Umgebung",
-    headline: "Entdecken Sie Vlissingen & Zeeland",
-    description: "Vlissingen ist eine Stadt mit rauem Charme, reicher maritimer Geschichte und einer einzigartigen Lage an der Westerschelde. Next to Sea ist der ideale Ausgangspunkt, um nicht nur die Stadt, sondern die gesamte Provinz Zeeland zu erkunden.",
+    headline: "Entdecken Sie Otterlo & De Veluwe",
+    description: "Otterlo ist die Perle der Veluwe. Boerderij Voorste Eng ist der ideale Ausgangspunkt, um die wunderschöne Natur, Kultur und Geschichte von Gelderland zu erkunden.",
     labels: {
       natuur: "Natur",
       cultuur: "Kultur",
@@ -133,41 +135,42 @@ const content = {
     spotsTitle: "Hotspots",
     spots: [
       { 
-        title: "Boulevard Vlissingen", 
-        desc: "Die längste Meerespromenade der Niederlande, wo Seeschiffe direkt an der Küste vorbeifahren.", 
-        img: "/images/boulevard.jpg" 
+        title: "Nationalpark De Hoge Veluwe", 
+        desc: "5.400 Hektar Naturpark mit Wäldern, Heide und Sandverwehungen, gleich um die Ecke.", 
+        img: "/images/hoge_veluwe_park.png" 
       },
       { 
-        title: "Badstrand", 
-        desc: "Der beliebteste Stadtstrand, perfekt nach Süden ausgerichtet für die meisten Sonnenstunden.", 
-        img: "/images/badstrand.jpg" 
+        title: "Kröller-Müller Museum", 
+        desc: "Weltberühmtes Museum mit der zweitgrößten Van-Gogh-Sammlung der Welt.", 
+        img: "/images/kroller_muller.png" 
       },
       { 
-        title: "Bellamypark", 
-        desc: "Das pulsierende Herz mit Terrassen, Restaurants und Veranstaltungen.", 
-        img: "/images/bellamypark.jpg" 
+        title: "Jachthuis Sint Hubertus", 
+        desc: "Der ikonische Landsitz der Familie Kröller-Müller, entworfen von Berlage.", 
+        img: "/images/jachthuis_hubertus.png" 
+      },
+      { 
+        title: "Museonder", 
+        desc: "Das erste unterirdische Museum der Welt bietet einen einzigartigen Einblick in den Boden.", 
+        img: "/images/museonder.png" 
       }
     ],
     dining: [
-      { name: "De Gevangentoren", desc: "Dining in a monumental tower with 360° views over the sea.", img: "/images/gevangentoren.jpg" },
-      { name: "Brasserie BLVD", desc: "Trendy pavilion on the beach with stunning views.", img: "/images/brasserie_blvd.png" },
-      { name: "De Gecroonde Liefde", desc: "Atmospheric seafood restaurant at Bellamypark.", img: "/images/gecroonde_liefde.jpg" },
-      { name: "De Timmerfabriek", desc: "Culinary enjoyment in an industrial historic building.", img: "/images/timmerfabriek.jpg" },
-      { name: "La Bella Cucina", desc: "Authentic Italian cuisine and delicacies.", img: "/images/la_bella_cucina.jpg" }
+      { name: "Restaurant De Waldhoorn", desc: "Gemütlich essen in klassischer Bauernhofatmosphäre.", img: "/images/restaurant_farmhouse.png" },
+      { name: "Cèpes", desc: "Kulinarischer Genuss mit lokalen Produkten im Hotel de Sterrenberg.", img: "/images/restaurant_fine.png" },
+      { name: "Grand Café Kröller", desc: "Leckeres Mittag- oder Abendessen im Herzen von Otterlo.", img: "/images/restaurant_farmhouse.png" },
+      { name: "Carnegie Cottage", desc: "Stimmungsvolles Restaurant mit Terrasse.", img: "/images/restaurant_fine.png" }
     ],
     sights: [
-      { name: "MuZEEum", desc: "Maritime museum in the beautiful Lampsins House.", img: "/images/muzeeum.jpg" },
-      { name: "Reptile Zoo Iguana", desc: "Largest indoor reptile zoo in Europe.", img: "/images/iguana.jpg" },
-      { name: "Michiel de Ruyter", desc: "The iconic statue of the naval hero on the Keizersbolwerk.", img: "/images/boulevard.jpg" },
-      { name: "Oranjemolen", desc: "The only windmill in the Netherlands right by the sea.", img: "/images/oranjemolen.jpg" },
-      { name: "Saint Jacob's Church", desc: "Old Church from the 14th century, a beacon in the city.", img: "/images/sint_jacobskerk.jpg" }
+      { name: "Niederländisches Fliesenmuseum", desc: "Einzigartige Sammlung historischer niederländischer Wandfliesen.", img: "/images/tile_museum.png" },
+      { name: "Radio Kootwijk", desc: "Imposante Sendestation im Art-Deco-Stil mitten in der Heide.", img: "/images/radio_kootwijk.png" },
+      { name: "Aussichtsturm De Valouwe", desc: "Spektakuläre Aussicht über die Baumwipfel der Veluwe.", img: "/images/observation_tower.png" },
+      { name: "Planken Wambuis", desc: "Weitläufiges Naturschutzgebiet mit Wildpferden und Rindern.", img: "/images/wildlife_cows.png" }
     ],
     activities: [
-      { name: "Windorgel", desc: "Lauschen Sie den Klängen des Windes am Nolledijk.", img: "/images/windorgel.jpg" },
-      { name: "Zonnetrein Zeeland", desc: "Entdecken Sie Vlissingen und Umgebung mit diesem elektrischen Zug.", img: "/images/zonnetrein.jpg" },
-      { name: "Nollestrand", desc: "Ruhigerer Strand mit ikonischen Schlafhäuschen.", img: "/images/duinen.jpg" },
-      { name: "CineCity", desc: "Kino und Standort des Filmfestivals Film by the Sea.", img: "/images/dining_view.png" },
-      { name: "Dünenwanderung", desc: "Schöne Wanderrouten durch die Dünen Richtung Dishoek.", img: "/images/duinen.jpg" }
+      { name: "Het Mosselsche Zand", desc: "Wunderschöne Sandverwehung für endlose Spaziergänge.", img: "/images/sand_drift.png" },
+      { name: "Sandverwehung De Zanding", desc: "Naturgebiet direkt am Rand von Otterlo.", img: "/images/sand_drift.png" },
+      { name: "Erlebnispfad 't Eekhoorntje", desc: "Tolle Wanderroute für Kinder durch den Wald.", img: "/images/adventure_path.png" }
     ]
   }
 };
@@ -183,7 +186,7 @@ const allItems = [
 ];
 ---
 
-<Layout title={`Next to Sea - ${t.title}`} lang={lang}>
+<Layout title={`Boerderij Voorste Eng - ${t.title}`} lang={lang}>
   
   <div class="relative bg-stone-50 py-32 text-center text-slate-800">
       <ScrollReveal animation="fade-up">

@@ -5,16 +5,16 @@ const { lang } = Astro.props;
 
 const content = {
   nl: {
-    subtitle: "Gezellig familiepension aan de boulevard van Vlissingen",
-    cta: "Bekijk beschikbaarheid"
+    subtitle: "Luxe vakantiewoningen in het hart van Otterlo",
+    cta: "Bekijk aanbod"
   },
   en: {
-    subtitle: "Cozy family pension on the boulevard of Vlissingen",
-    cta: "Check availability"
+    subtitle: "Luxury holiday homes in the heart of Otterlo",
+    cta: "View offer"
   },
   de: {
-    subtitle: "Gemütliche familiäre Pension am Boulevard von Vlissingen",
-    cta: "Verfügbarkeit prüfen"
+    subtitle: "Luxusferienhäuser im Herzen von Otterlo",
+    cta: "Angebot ansehen"
   }
 };
 
@@ -25,11 +25,11 @@ const t = content[lang] || content.nl;
   
   <div class="absolute inset-0 z-0">
     <img 
-      src="/images/vlissingen-hero-new.jpg" 
-      alt="Vlissingen Skyline" 
+      src="/images/hero_farmhouse.png" 
+      alt="Boerderij Voorste Eng Otterlo" 
       class="w-full h-full object-cover animate-scale-slow"
     />
-    <div class="absolute inset-0 bg-stone-900/30"></div>
+    <div class="absolute inset-0 bg-stone-900/40"></div>
   </div>
 
   <!-- Content -->
@@ -37,27 +37,27 @@ const t = content[lang] || content.nl;
     
     <ScrollReveal animation="fade-up" duration={1.2} delay={0.2}>
         <p class="text-white/90 text-sm md:text-base uppercase tracking-[0.3em] mb-6 font-medium">
-            Vlissingen, Zeeland
+            Otterlo, Hoge Veluwe
         </p>
     </ScrollReveal>
 
     <ScrollReveal animation="fade-up" duration={1.5} delay={0.4}>
         <h1 class="text-6xl md:text-8xl lg:text-9xl text-white font-heading font-light tracking-tight leading-none mb-8 drop-shadow-sm">
-            Pension Marijke
+            Boerderij<br/><span class="italic font-normal">Voorste Eng</span>
         </h1>
     </ScrollReveal>
 
     <ScrollReveal animation="fade-up" duration={1.2} delay={0.8}>
         <div class="w-16 h-[1px] bg-white/60 mx-auto mb-8"></div>
         <p class="text-white/90 text-lg md:text-xl font-light tracking-wide max-w-xl mx-auto mb-12">
-            {t.subtitle}
+            {lang === 'nl' ? 'Luxe vakantiewoningen in het hart van Otterlo' : (lang === 'de' ? 'Luxusferienhäuser im Herzen von Otterlo' : 'Luxury holiday homes in the heart of Otterlo')}
         </p>
     </ScrollReveal>
 
     <ScrollReveal animation="fade-up" duration={1} delay={1.1}>
         <a 
-            href={`/${lang}/contact`} 
-            class="group inline-block px-8 py-4 bg-white text-sea-blue border border-transparent hover:border-white/30 hover:bg-white/10 hover:text-white hover:backdrop-blur-sm font-medium uppercase tracking-widest text-xs transition-all duration-500 rounded-full"
+            href={`/${lang}/accommodatie`} 
+            class="group inline-block px-8 py-4 bg-white text-stone-900 border border-transparent hover:border-white/30 hover:bg-white/10 hover:text-white hover:backdrop-blur-sm font-medium uppercase tracking-widest text-xs transition-all duration-500 rounded-full"
         >
             {t.cta}
         </a>
