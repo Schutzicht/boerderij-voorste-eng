@@ -1,11 +1,21 @@
 ---
 const { class: className = "", color = "default" } = Astro.props;
 ---
-  <a href="/" class={`group flex items-center gap-4 decoration-none ${className}`}>
+<a href="/" class={`group flex items-center gap-4 decoration-none ${className}`}>
   <!-- Luxury Monogram Icon -->
-  <div class={`relative w-12 h-12 flex items-center justify-center border border-current rounded-full transition-colors duration-300 ${color === 'white' ? 'text-white border-white/30' : 'text-sea-blue border-sea-blue/30'}`}>
-    <span class="font-heading font-normal text-xl translate-y-[1px] tracking-widest">VE</span>
+  <div class={`relative w-12 h-12 flex items-center justify-center`}>
+      <!-- Rotating Border (Lock Mechanism) -->
+      <div 
+        class={`absolute inset-0 border border-current rounded-full transition-colors duration-300 logo-lock-ring ${color === 'white' ? 'text-white border-white/30' : 'text-bordeaux border-bordeaux/30'}`}
+      >
+        <!-- Lock Notch -->
+        <span class={`absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-stone-50 rounded-full ${color === 'white' ? 'bg-bordeaux' : 'bg-stone-50'}`}></span>
+      </div>
+      
+      <!-- Inner Content -->
+      <span class="font-heading font-normal text-xl translate-y-[1px] tracking-widest relative z-10 logo-content">VE</span>
   </div>
+
   <div class="flex flex-col select-none">
     <span class={`font-body text-[0.6rem] uppercase tracking-[0.25em] font-medium leading-none mb-0.5 ${color === 'white' ? 'text-white/80' : 'text-stone-500'}`}>
       Boerderij
@@ -15,3 +25,34 @@ const { class: className = "", color = "default" } = Astro.props;
     </span>
   </div>
 </a>
+
+<style>
+    /* Lock Animation */
+    @keyframes lockRotate {
+        0% { transform: rotate(-90deg); opacity: 0; }
+        60% { transform: rotate(20deg); opacity: 1; }
+        80% { transform: rotate(-10deg); }
+        100% { transform: rotate(0deg); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .logo-lock-ring {
+        animation: lockRotate 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; /* Overshoot bezier */
+        transform-origin: center;
+    }
+
+    .logo-content {
+        animation: fadeIn 0.8s ease-out 0.4s forwards; /* Delayed fade in */
+        opacity: 0;
+    }
+
+    /* Hover Effect: Subtle unlock jiggle */
+    .group:hover .logo-lock-ring {
+        transform: rotate(15deg);
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+</style>

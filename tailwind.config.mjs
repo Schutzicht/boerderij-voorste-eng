@@ -8,7 +8,8 @@ export default {
                 body: ['"Inter"', 'sans-serif'],
             },
             colors: {
-                'sea-blue': '#0e4c92',
+                'bordeaux': '#800020',
+                'bordeaux-dark': '#5c0017',
                 'dune-sand': '#E7E5E4',
                 'foam-white': '#f8fcfd',
                 'lighthouse-red': '#d32f2f',

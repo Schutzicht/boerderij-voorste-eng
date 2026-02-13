@@ -10,19 +10,19 @@ const content = {
       {
         title: "Direct aan de Hoge Veluwe",
         desc: "Binnen enkele minuten staat u midden in de natuur. Geniet van de eindeloze heidevelden, bossen en zandverstuivingen van Nationaal Park De Hoge Veluwe.",
-        img: "/images/veluwe_path.png",
+        img: "/images/real/terrace/terrace-1.avif",
         stat: "1 km afstand"
       },
       {
         title: "Luxe comfort & Sfeer",
         desc: "Uw eigen oase van rust in onze stijlvol verbouwde schuur. De appartementen zijn voorzien van een luxe keuken, boxspring bedden en een privéterras.",
-        img: "/images/interior_living.png",
+        img: "/images/real/living-room/living-room-5.avif",
         stat: "Nieuw (2025)"
       },
       {
         title: "Hartje Otterlo",
         desc: "Gelegen in het gezellige centrum van Otterlo, met restaurants, winkels en het Kröller-Müller Museum om de hoek. Gratis parkeren op eigen terrein.",
-        img: "/images/hero_farmhouse.png",
+        img: "/images/real/exterior/exterior-1.avif",
         stat: "Centrum"
       }
     ]
@@ -32,19 +32,19 @@ const content = {
       {
         title: "Right next to Hoge Veluwe",
         desc: "Within minutes you are surrounded by nature. Enjoy the endless heathlands, forests, and sand drifts of National Park De Hoge Veluwe.",
-        img: "/images/veluwe_path.png",
+        img: "/images/real/terrace/terrace-1.avif",
         stat: "1 km away"
       },
       {
         title: "Luxury comfort & Atmosphere",
         desc: "Your own oasis of peace in our stylishly renovated barn. The apartments feature a luxury kitchen, boxspring beds, and a private terrace.",
-        img: "/images/interior_living.png",
+        img: "/images/real/living-room/living-room-5.avif",
         stat: "New (2025)"
       },
       {
         title: "Heart of Otterlo",
         desc: "Located in the cozy center of Otterlo, with restaurants, shops, and the Kröller-Müller Museum around the corner. Free parking on site.",
-        img: "/images/hero_farmhouse.png",
+        img: "/images/real/exterior/exterior-1.avif",
         stat: "Center"
       }
     ]
@@ -54,19 +54,19 @@ const content = {
       {
         title: "Direkt am Hoge Veluwe",
         desc: "In wenigen Minuten sind Sie mitten in der Natur. Genießen Sie die endlosen Heidefelder, Wälder und Sandverwehungen des Nationalparks De Hoge Veluwe.",
-        img: "/images/veluwe_path.png",
+        img: "/images/real/terrace/terrace-1.avif",
         stat: "1 km entfernt"
       },
       {
         title: "Luxuskomfort & Atmosphäre",
         desc: "Ihre eigene Oase der Ruhe in unserer stilvoll renovierten Scheune. Die Apartments verfügen über eine Luxusküche, Boxspringbetten und eine private Terrasse.",
-        img: "/images/interior_living.png",
+        img: "/images/real/living-room/living-room-5.avif",
         stat: "Neu (2025)"
       },
       {
         title: "Im Herzen von Otterlo",
         desc: "Im gemütlichen Zentrum von Otterlo gelegen, mit Restaurants, Geschäften und dem Kröller-Müller Museum um die Ecke. Kostenlose Parkplätze auf dem Gelände.",
-        img: "/images/hero_farmhouse.png",
+        img: "/images/real/exterior/exterior-1.avif",
         stat: "Zentrum"
       }
     ]
@@ -92,7 +92,7 @@ const t = content[lang] || content.nl;
                     class="h-full w-full object-cover"
                   />
                   <!-- Stat Badge overlay -->
-                  <div class="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 text-sea-blue font-heading font-bold shadow-lg z-10 border border-white/20">
+                  <div class="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 text-bordeaux font-heading font-bold shadow-lg z-10 border border-white/20">
                     {feature.stat}
                   </div>
                </div>
@@ -109,8 +109,8 @@ const t = content[lang] || content.nl;
                <p class="text-lg text-slate-600 font-light leading-relaxed mb-8 max-w-lg">
                  {feature.desc}
                </p>
-               <div class="flex items-center text-sm font-bold uppercase tracking-widest text-sea-blue group cursor-pointer">
-                  <span class="border-b border-sea-blue pb-1">
+               <div class="flex items-center text-sm font-bold uppercase tracking-widest text-bordeaux group cursor-pointer">
+                  <span class="border-b border-bordeaux pb-1">
                       {lang === 'nl' ? 'Ontdek meer' : lang === 'de' ? 'Mehr entdecken' : 'Discover more'}
                   </span>
                </div>

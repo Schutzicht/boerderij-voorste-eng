@@ -31,13 +31,13 @@ const features = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       {features.map((feature) => (
         <div class="text-center p-8 rounded-2xl bg-white hover:bg-white hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-dune-sand/30 group">
-          <div class="text-sea-blue mb-6 flex justify-center transform group-hover:scale-110 transition-transform duration-300">
-            <div class="p-4 bg-foam-white rounded-full border border-sea-blue/10">
+          <div class="text-bordeaux mb-6 flex justify-center transform group-hover:scale-110 transition-transform duration-300">
+            <div class="p-4 bg-foam-white rounded-full border border-bordeaux/10">
                <!-- @ts-ignore -->
               <Icon name={feature.icon} class="w-8 h-8" />
             </div>
           </div>
-          <h3 class="font-heading text-lg font-bold mb-3 text-sea-blue">{feature.title[lang] || feature.title.nl}</h3>
+          <h3 class="font-heading text-lg font-bold mb-3 text-bordeaux">{feature.title[lang] || feature.title.nl}</h3>
           <p class="text-slate-500 font-body leading-relaxed">{feature.desc[lang] || feature.desc.nl}</p>
         </div>
       ))}

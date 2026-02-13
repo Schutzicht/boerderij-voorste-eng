@@ -33,7 +33,7 @@ const currentNav = navItems[lang] || navItems.nl;
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-20 items-center">
       <div class="flex-shrink-0 flex items-center z-50">
-        <Logo class="text-sea-blue hover:text-sky-700 transition-colors" />
+        <Logo class="text-bordeaux hover:text-bordeaux-dark transition-colors" />
       </div>
       
       <!-- Desktop Menu -->
@@ -41,7 +41,7 @@ const currentNav = navItems[lang] || navItems.nl;
         {currentNav.map((item) => (
           <a
             href={item.href}
-            class="text-slate-600 hover:text-sea-blue px-3 py-2 text-sm font-bold transition-colors duration-200 relative group"
+            class="text-slate-600 hover:text-bordeaux px-3 py-2 text-sm font-bold transition-colors duration-200 relative group"
           >
             {item.name}
              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-dune-sand transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
@@ -51,11 +51,11 @@ const currentNav = navItems[lang] || navItems.nl;
       
       <!-- Desktop Language Selector -->
       <div class="hidden md:flex items-center space-x-4">
-        <a href="/nl" class={`text-sm font-semibold transition-colors ${lang === 'nl' ? 'text-sea-blue' : 'text-slate-400 hover:text-sea-blue'}`}>NL</a>
+        <a href="/nl" class={`text-sm font-semibold transition-colors ${lang === 'nl' ? 'text-bordeaux' : 'text-slate-400 hover:text-bordeaux'}`}>NL</a>
         <span class="text-dune-sand">|</span>
-        <a href="/en" class={`text-sm font-semibold transition-colors ${lang === 'en' ? 'text-sea-blue' : 'text-slate-400 hover:text-sea-blue'}`}>EN</a>
+        <a href="/en" class={`text-sm font-semibold transition-colors ${lang === 'en' ? 'text-bordeaux' : 'text-slate-400 hover:text-bordeaux'}`}>EN</a>
         <span class="text-dune-sand">|</span>
-        <a href="/de" class={`text-sm font-semibold transition-colors ${lang === 'de' ? 'text-sea-blue' : 'text-slate-400 hover:text-sea-blue'}`}>DE</a>
+        <a href="/de" class={`text-sm font-semibold transition-colors ${lang === 'de' ? 'text-bordeaux' : 'text-slate-400 hover:text-bordeaux'}`}>DE</a>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -63,7 +63,7 @@ const currentNav = navItems[lang] || navItems.nl;
         <button 
           id="mobile-menu-btn"
           type="button" 
-          class="text-sea-blue hover:text-sky-700 p-2 focus:outline-none" 
+          class="text-bordeaux hover:text-bordeaux-dark p-2 focus:outline-none" 
           aria-label="Menu"
         >
           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,7 +85,7 @@ const currentNav = navItems[lang] || navItems.nl;
        <button 
         id="close-menu-btn"
         type="button" 
-        class="text-sea-blue hover:text-sky-700 p-2 focus:outline-none"
+        class="text-bordeaux hover:text-bordeaux-dark p-2 focus:outline-none"
       >
         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -98,7 +98,7 @@ const currentNav = navItems[lang] || navItems.nl;
     {currentNav.map((item) => (
       <a
         href={item.href}
-        class="text-3xl font-heading font-light text-slate-800 hover:text-sea-blue transition-colors duration-200"
+        class="text-3xl font-heading font-light text-slate-800 hover:text-bordeaux transition-colors duration-200"
       >
         {item.name}
       </a>
@@ -107,9 +107,9 @@ const currentNav = navItems[lang] || navItems.nl;
 
   <!-- Mobile Language Selector -->
   <div class="flex items-center space-x-8 pt-8 border-t border-gray-100 mt-8 w-64 justify-center">
-      <a href="/nl" class={`text-xl font-heading font-light transition-colors ${lang === 'nl' ? 'text-sea-blue' : 'text-slate-400'}`}>NL</a>
-      <a href="/en" class={`text-xl font-heading font-light transition-colors ${lang === 'en' ? 'text-sea-blue' : 'text-slate-400'}`}>EN</a>
-      <a href="/de" class={`text-xl font-heading font-light transition-colors ${lang === 'de' ? 'text-sea-blue' : 'text-slate-400'}`}>DE</a>
+      <a href="/nl" class={`text-xl font-heading font-light transition-colors ${lang === 'nl' ? 'text-bordeaux' : 'text-slate-400'}`}>NL</a>
+      <a href="/en" class={`text-xl font-heading font-light transition-colors ${lang === 'en' ? 'text-bordeaux' : 'text-slate-400'}`}>EN</a>
+      <a href="/de" class={`text-xl font-heading font-light transition-colors ${lang === 'de' ? 'text-bordeaux' : 'text-slate-400'}`}>DE</a>
   </div>
 </div>
 

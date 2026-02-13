@@ -190,9 +190,9 @@ const allItems = [
   
   <div class="relative bg-stone-50 py-32 text-center text-slate-800">
       <ScrollReveal animation="fade-up">
-         <h1 class="font-heading text-5xl md:text-7xl font-light mb-8 text-sea-blue tracking-tight">{t.headline}</h1>
+         <h1 class="font-heading text-5xl md:text-7xl font-light mb-8 text-bordeaux tracking-tight">{t.headline}</h1>
          <p class="max-w-2xl mx-auto text-stone-600 text-xl font-light leading-relaxed">{t.description}</p>
-         <div class="w-24 h-[1px] bg-sea-blue/30 mx-auto mt-12"></div>
+         <div class="w-24 h-[1px] bg-bordeaux/30 mx-auto mt-12"></div>
       </ScrollReveal>
   </div>
 
@@ -220,20 +220,20 @@ const allItems = [
 
                         {/* Top Category Tag */}
                         <div class="absolute top-4 left-4 z-10">
-                            <span class="inline-block bg-white/90 backdrop-blur text-sea-blue text-xs font-bold uppercase tracking-widest px-3 py-1 shadow-sm border border-stone-100">
+                            <span class="inline-block bg-white/90 backdrop-blur text-bordeaux text-xs font-bold uppercase tracking-widest px-3 py-1 shadow-sm border border-stone-100">
                                 {item.type || item.category}
                             </span>
                         </div>
                     </div>
 
                     <div class="p-8">
-                        <h3 class="font-heading text-2xl font-light text-slate-900 mb-3 group-hover:text-sea-blue transition-colors">
+                        <h3 class="font-heading text-2xl font-light text-slate-900 mb-3 group-hover:text-bordeaux transition-colors">
                             {item.name || item.title}
                         </h3>
                         <p class="text-stone-500 text-sm leading-relaxed mb-4">
                             {item.desc}
                         </p>
-                        <div class="flex items-center text-xs font-bold uppercase tracking-widest text-sea-blue opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                        <div class="flex items-center text-xs font-bold uppercase tracking-widest text-bordeaux opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                             {lang === 'nl' ? 'Ontdekken' : 'Discover'}
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
