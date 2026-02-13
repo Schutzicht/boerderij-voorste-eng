@@ -25,6 +25,23 @@ const lang = getLangFromUrl(Astro.url);
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+        
+        <!-- SEO / Open Graph -->
+        <meta name="description" content={description || "Luxe vakantiewoningen 'De Oude Schuur' & 'De Peerdestal' in Otterlo, direct aan de Hoge Veluwe. Authentiek overnachten met modern comfort."} />
+        <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description || "Luxe vakantiewoningen in Otterlo. Geniet van rust, ruimte en luxe bij Boerderij Voorste Eng."} />
+        <meta property="og:image" content={new URL("/images/real/exterior/exterior-6.avif", Astro.url)} />
+        
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description || "Luxe vakantiewoningen in Otterlo. Geniet van rust, ruimte en luxe bij Boerderij Voorste Eng."} />
+        <meta property="twitter:image" content={new URL("/images/real/exterior/exterior-6.avif", Astro.url)} />
+
         <ClientRouter />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

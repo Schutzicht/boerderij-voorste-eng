@@ -28,6 +28,8 @@ const t = content[lang] || content.nl;
       src="/images/real/exterior/exterior-6.avif" 
       alt="Boerderij Voorste Eng Otterlo" 
       class="w-full h-full object-cover animate-scale-slow"
+      loading="eager"
+      fetchpriority="high"
     />
     <div class="absolute inset-0 bg-stone-900/40"></div>
   </div>
@@ -42,7 +44,7 @@ const t = content[lang] || content.nl;
     </ScrollReveal>
 
     <ScrollReveal animation="fade-up" duration={1.5} delay={0.4}>
-        <h1 class="text-6xl md:text-8xl lg:text-9xl text-white font-heading font-light tracking-tight leading-none mb-8 drop-shadow-sm">
+        <h1 class="text-5xl md:text-8xl lg:text-9xl text-white font-heading font-light tracking-tight leading-none mb-8 drop-shadow-sm">
             Boerderij<br/><span class="italic font-normal">Voorste Eng</span>
         </h1>
     </ScrollReveal>
