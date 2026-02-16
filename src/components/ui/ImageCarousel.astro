@@ -1,0 +1,192 @@
+
+---
+interface Props {
+  images: string[];
+  alt: string;
+}
+
+const { images, alt } = Astro.props;
+const uniqueId = `carousel-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class="relative group w-full carousel-container" id={uniqueId} data-total-slides={images.length}>
+  
+  <!-- Main Slider -->
+  <div class="overflow-hidden rounded-sm bg-stone-100 aspect-video relative shadow-lg touch-pan-y">
+    <div 
+        class="carousel-track flex transition-transform duration-500 ease-in-out h-full"
+        style="transform: translateX(0%)"
+    >
+      {images.map((img, index) => (
+        <div class="min-w-full h-full relative">
+          <img 
+            src={img} 
+            alt={`${alt} - ${index + 1}`} 
+            class="w-full h-full object-cover select-none"
+            loading={index === 0 ? "eager" : "lazy"}
+            draggable="false"
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button 
+        class="prev-btn absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-bordeaux p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 z-10"
+        aria-label="Previous slide"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+    </button>
+    
+    <button 
+        class="next-btn absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-bordeaux p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 z-10"
+        aria-label="Next slide"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+    </button>
+
+    <!-- Dots -->
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+       {images.map((_, index) => (
+         <button 
+            data-index={index}
+            class="dot-btn w-2.5 h-2.5 rounded-full transition-all duration-300 shadow-sm bg-white/50 hover:bg-white/80"
+            aria-label={`Go to slide ${index + 1}`}
+         ></button>
+       ))}
+    </div>
+  </div>
+
+  <!-- Thumbnails (Optional, shown on larger screens) -->
+  <div class="hidden md:grid grid-cols-6 gap-2 mt-4">
+      {images.map((img, index) => (
+        <button 
+            data-index={index}
+            class="thumb-btn aspect-square rounded-sm overflow-hidden opacity-60 hover:opacity-100 transition-opacity ring-2 ring-transparent"
+        >
+            <img src={img} class="w-full h-full object-cover" alt="" />
+        </button>
+      ))}
+  </div>
+
+</div>
+
+<script>
+  function setupCarousel(carousel) {
+      const track = carousel.querySelector('.carousel-track');
+      const prevBtn = carousel.querySelector('.prev-btn');
+      const nextBtn = carousel.querySelector('.next-btn');
+      const dotBtns = carousel.querySelectorAll('.dot-btn');
+      const thumbBtns = carousel.querySelectorAll('.thumb-btn');
+      const totalSlides = parseInt(carousel.dataset.totalSlides);
+      let activeSlide = 0;
+
+      // Touch handling variables
+      let touchStartX = 0;
+      let touchEndX = 0;
+      const minSwipeDistance = 50;
+
+      function updateSlide() {
+          track.style.transform = `translateX(-${activeSlide * 100}%)`;
+          
+          // Update dots
+          dotBtns.forEach((btn, idx) => {
+              if (idx === activeSlide) {
+                  btn.classList.remove('bg-white/50', 'hover:bg-white/80');
+                  btn.classList.add('bg-white', 'scale-125');
+              } else {
+                  btn.classList.add('bg-white/50', 'hover:bg-white/80');
+                  btn.classList.remove('bg-white', 'scale-125');
+              }
+          });
+
+          // Update thumbs
+          thumbBtns.forEach((btn, idx) => {
+              if (idx === activeSlide) {
+                  btn.classList.remove('opacity-60');
+                  btn.classList.add('!opacity-100', '!ring-bordeaux');
+              } else {
+                  btn.classList.add('opacity-60');
+                  btn.classList.remove('!opacity-100', '!ring-bordeaux');
+              }
+          });
+      }
+
+      function nextSlide() {
+          activeSlide = (activeSlide + 1) % totalSlides;
+          updateSlide();
+      }
+
+      function prevSlide() {
+          activeSlide = (activeSlide - 1 + totalSlides) % totalSlides;
+          updateSlide();
+      }
+
+      // Event Listeners
+      nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          nextSlide();
+      });
+
+      prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          prevSlide();
+      });
+
+      dotBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+              activeSlide = parseInt(e.target.dataset.index);
+              updateSlide();
+          });
+      });
+
+      thumbBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+              activeSlide = parseInt(e.currentTarget.dataset.index);
+              updateSlide();
+          });
+      });
+
+      // Swipe Support
+      track.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      track.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+      }, { passive: true });
+
+      function handleSwipe() {
+          const swipeDistance = touchEndX - touchStartX;
+          
+          if (Math.abs(swipeDistance) > minSwipeDistance) {
+              if (swipeDistance < 0) {
+                  // Swiped Left -> Next Slide
+                  nextSlide();
+              } else {
+                  // Swiped Right -> Prev Slide
+                  prevSlide();
+              }
+          }
+      }
+
+      // Initialize
+      updateSlide();
+  }
+
+  // Initialize all carousels on the page
+  // Use astro:page-load for View Transitions compatibility if enabled, or DOMContentLoaded
+  document.addEventListener('astro:page-load', () => {
+      document.querySelectorAll('.carousel-container').forEach(setupCarousel);
+  });
+  
+  // Fallback for initial load if not using View Transitions or standard load
+  document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.carousel-container').forEach(setupCarousel);
+  });
+</script>

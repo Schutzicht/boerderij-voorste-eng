@@ -1,0 +1,128 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ScrollReveal from '../../../components/ui/ScrollReveal.astro';
+import ImageCarousel from '../../../components/ui/ImageCarousel.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'nl' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'de' } },
+  ];
+}
+
+const { lang } = Astro.params;
+
+const images = [
+    "/images/real/rooms/oude-schuur/424671ca-f79e-4955-8a75-98dc99c25599_mw1280.webp",
+    "/images/real/rooms/oude-schuur/4420ac25-c1e7-4907-a906-6b8d4ffc5a99_mw1280.webp",
+    "/images/real/rooms/oude-schuur/56743abb-f775-4cc9-83e8-eb8fc950de53_mw1280.webp",
+    "/images/real/rooms/oude-schuur/60328597-342f-41a7-89a7-8ff62af81f66_mw1280.webp",
+    "/images/real/rooms/oude-schuur/681f8b9e-a38f-4049-baec-19f2dbc48dfe_mw1280.webp",
+    "/images/real/rooms/oude-schuur/a3518df0-c924-4b67-a631-382506cea249_mw1280.webp",
+    "/images/real/rooms/oude-schuur/b5d1ac60-a7f8-4cda-a031-1d978f5828ae_mw1280.webp",
+    "/images/real/rooms/oude-schuur/be7d7586-58e5-4d8a-a464-eb03ed3cfbc4_mw1280.webp",
+    "/images/real/rooms/oude-schuur/eab40396-c733-407b-94c9-8c0ee15e11ac_mw1280.webp"
+];
+
+const content = {
+  nl: {
+    title: "De Oude Schuur",
+    headline: "De Oude Schuur",
+    intro: "Ervaar de charme van vroeger met het comfort van nu in 'De Oude Schuur'. Een sfeervol verblijf waar authentieke details en moderne luxe samenkomen. Deze ruimte is van alle gemakken voorzien, inclusief vloerverwarming, een luxe keuken met oven en Nespresso-machine, en heerlijke comfortabele bedden.",
+    galleryTitle: "Sfeerimpressie",
+    rules: {
+      title: "Goed om te weten",
+      items: [
+        { label: "Check-in", value: "Vanaf 15:00" },
+        { label: "Check-out", value: "Tot 10:30" },
+        { label: "Roken", value: "Niet toegestaan" },
+        { label: "Huisdieren", value: "Niet toegestaan" }
+      ]
+    }
+  },
+  en: {
+    title: "The Old Barn",
+    headline: "The Old Barn",
+    intro: "Experience the charm of the past with the comfort of today in 'The Old Barn'. An atmospheric stay where authentic details and modern luxury meet. This space is fully equipped, including underfloor heating, a luxury kitchen with oven and Nespresso machine, and wonderful comfortable beds.",
+    galleryTitle: "Impressions",
+    rules: {
+      title: "Good to know",
+      items: [
+        { label: "Check-in", value: "From 15:00" },
+        { label: "Check-out", value: "Until 10:30" },
+        { label: "Smoking", value: "Not allowed" },
+        { label: "Pets", value: "Not allowed" }
+      ]
+    }
+  },
+  de: {
+    title: "Die Alte Scheune",
+    headline: "Die Alte Scheune",
+    intro: "Erleben Sie den Charme der Vergangenheit mit dem Komfort von heute in 'Die Alte Scheune'. Ein stimmungsvoller Aufenthalt, wo authentische Details und moderner Luxus aufeinandertreffen. Dieser Raum ist komplett ausgestattet, inklusive Fußbodenheizung, einer Luxusküche mit Ofen und Nespresso-Maschine sowie herrlich bequemen Betten.",
+    galleryTitle: "Impressionen",
+    rules: {
+      title: "Gut zu wissen",
+      items: [
+        { label: "Check-in", value: "Ab 15:00" },
+        { label: "Check-out", value: "Bis 10:30" },
+        { label: "Rauchen", value: "Nicht erlaubt" },
+        { label: "Haustiere", value: "Nicht erlaubt" }
+      ]
+    }
+  }
+};
+
+const t = content[lang] || content.nl;
+---
+
+<Layout title={`Boerderij Voorste Eng - ${t.title}`} lang={lang}>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+    
+    <!-- Intro Section -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+        <ScrollReveal animation="fade-up">
+            <h1 class="font-heading text-5xl md:text-7xl font-light mb-8 text-bordeaux tracking-tight">{t.headline}</h1>
+            <p class="text-stone-600 text-xl font-light leading-relaxed">{t.intro}</p>
+            <div class="w-24 h-[1px] bg-bordeaux/30 mx-auto mt-12"></div>
+        </ScrollReveal>
+    </div>
+
+    <!-- Gallery / Carousel -->
+    <div class="mb-24">
+        <ScrollReveal animation="fade-up" delay={0.2}>
+            <ImageCarousel images={images} alt={t.title} />
+        </ScrollReveal>
+    </div>
+
+    <!-- Info / Rules Section -->
+    <div class="bg-foam-white p-12 lg:p-20 rounded-sm border border-stone-100 relative overflow-hidden">
+        <ScrollReveal animation="fade-up">
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                   <h3 class="text-3xl font-heading font-light text-bordeaux mb-6">{t.rules.title}</h3>
+                   <p class="text-slate-600 mb-8">{lang === 'nl' ? 'Wij zorgen voor een zorgeloos verblijf. Hier zijn enkele praktische zaken.' : 'We ensure a carefree stay. Here are some practical matters.'}</p>
+                </div>
+                
+                <div class="bg-white p-8 shadow-sm">
+                   <ul class="space-y-4">
+                      {t.rules.items.map(item => (
+                          <li class="flex justify-between items-center border-b border-stone-100 pb-2 last:border-0 last:pb-0">
+                              <span class="font-bold text-slate-700">{item.label}</span>
+                              <span class="text-slate-500">{item.value}</span>
+                          </li>
+                      ))}
+                   </ul>
+                </div>
+            </div>
+            
+            <!-- Background Watermark -->
+            <div class="absolute -top-20 -right-20 text-[20rem] font-heading text-bordeaux/5 leading-none select-none pointer-events-none">
+                OS
+            </div>
+        </ScrollReveal>
+    </div>
+
+  </div>
+</Layout>

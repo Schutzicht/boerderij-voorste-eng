@@ -5,21 +5,42 @@ import Logo from '../ui/Logo.astro';
 const navItems = {
   nl: [
     { name: 'Home', href: '/nl' },
-    { name: 'Accommodatie', href: '/nl/accommodatie' },
+    { 
+      name: 'Accommodatie', 
+      href: '/nl/accommodatie',
+      children: [
+        { name: 'De Oude Schuur', href: '/nl/accommodatie/de-oude-schuur' },
+        { name: 'De Peerdestal', href: '/nl/accommodatie/de-peerdestal' }
+      ]
+    },
     { name: 'Omgeving', href: '/nl/omgeving' },
     { name: 'Gallerij', href: '/nl/gallerij' },
     { name: 'Contact', href: '/nl/contact' },
   ],
   en: [
     { name: 'Home', href: '/en' },
-    { name: 'Accommodation', href: '/en/accommodation' },
+    { 
+      name: 'Accommodation', 
+      href: '/en/accommodation',
+      children: [
+        { name: 'The Old Barn', href: '/en/accommodation/de-oude-schuur' },
+        { name: 'The Horse Stable', href: '/en/accommodation/de-peerdestal' }
+      ]
+    },
     { name: 'Surroundings', href: '/en/surroundings' },
     { name: 'Gallery', href: '/en/gallery' },
     { name: 'Contact', href: '/en/contact' },
   ],
   de: [
     { name: 'Start', href: '/de' },
-    { name: 'Unterkunft', href: '/de/unterkunft' },
+    { 
+      name: 'Unterkunft', 
+      href: '/de/unterkunft',
+      children: [
+        { name: 'Die Alte Scheune', href: '/de/accommodatie/de-oude-schuur' },
+        { name: 'Der Pferdestall', href: '/de/accommodatie/de-peerdestal' }
+      ]
+    },
     { name: 'Umgebung', href: '/de/umgebung' },
     { name: 'Galerie', href: '/de/galerie' },
     { name: 'Kontakt', href: '/de/kontakt' },
@@ -37,15 +58,35 @@ const currentNav = navItems[lang] || navItems.nl;
       </div>
       
       <!-- Desktop Menu -->
-      <div class="hidden md:ml-6 md:flex md:space-x-8">
+      <div class="hidden md:ml-6 md:flex md:space-x-8 items-center">
         {currentNav.map((item) => (
-          <a
-            href={item.href}
-            class="text-slate-600 hover:text-bordeaux px-3 py-2 text-sm font-bold transition-colors duration-200 relative group"
-          >
-            {item.name}
-             <span class="absolute bottom-0 left-0 w-full h-0.5 bg-dune-sand transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-          </a>
+          <div class="relative group">
+            <a
+              href={item.href}
+              class="text-slate-600 hover:text-bordeaux px-3 py-2 text-sm font-bold transition-colors duration-200 relative inline-flex items-center gap-1"
+            >
+              {item.name}
+              {item.children && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mt-0.5 group-hover:rotate-180 transition-transform duration-200">
+                  <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                </svg>
+              )}
+              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-dune-sand transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            
+            {item.children && (
+              <div class="absolute left-0 mt-0 w-48 bg-white rounded-b-sm shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left -translate-y-2 group-hover:translate-y-0 z-50 border-t-2 border-bordeaux">
+                {item.children.map((child) => (
+                  <a
+                    href={child.href}
+                    class="block px-4 py-3 text-sm text-slate-600 hover:bg-foam-white hover:text-bordeaux transition-colors"
+                  >
+                    {child.name}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
       </div>
       
@@ -94,14 +135,28 @@ const currentNav = navItems[lang] || navItems.nl;
   </div>
 
   <!-- Mobile Nav Links -->
-  <div class="flex flex-col space-y-6 text-center">
+  <div class="flex flex-col space-y-6 text-center w-full max-w-xs">
     {currentNav.map((item) => (
-      <a
-        href={item.href}
-        class="text-3xl font-heading font-light text-slate-800 hover:text-bordeaux transition-colors duration-200"
-      >
-        {item.name}
-      </a>
+      <div class="flex flex-col items-center">
+        <a
+          href={item.href}
+          class="text-3xl font-heading font-light text-slate-800 hover:text-bordeaux transition-colors duration-200"
+        >
+          {item.name}
+        </a>
+        {item.children && (
+           <div class="flex flex-col space-y-3 mt-4 w-full border-l border-bordeaux/20 pl-4 ml-4">
+             {item.children.map((child) => (
+               <a
+                 href={child.href}
+                 class="text-xl font-heading font-light text-slate-500 hover:text-bordeaux transition-colors duration-200 text-left"
+               >
+                 {child.name}
+               </a>
+             ))}
+           </div>
+        )}
+      </div>
     ))}
   </div>
 

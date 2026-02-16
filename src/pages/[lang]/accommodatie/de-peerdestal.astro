@@ -1,0 +1,129 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ScrollReveal from '../../../components/ui/ScrollReveal.astro';
+import ImageCarousel from '../../../components/ui/ImageCarousel.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'nl' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'de' } },
+  ];
+}
+
+const { lang } = Astro.params;
+
+const images = [
+    "/images/real/rooms/peerdestal/2602d22b-3fe3-4a70-8b4d-b3cf4cac2d5d_mw1280.webp",
+    "/images/real/rooms/peerdestal/3318d45d-6c3c-4c92-9bef-adff4a54d684_mw1280.webp",
+    "/images/real/rooms/peerdestal/507810b1-8c16-4cc2-b304-e42b6b2df1ce_mw1280.webp",
+    "/images/real/rooms/peerdestal/731c8e24-2e09-4512-b489-303987da09ef_mw1280.webp",
+    "/images/real/rooms/peerdestal/7566987e-fb14-495d-9967-b881e0f1dd4e_mw1280.webp",
+    "/images/real/rooms/peerdestal/9d390b07-e5e1-49ea-8a42-ef6bdd74247c_mw1280.webp",
+    "/images/real/rooms/peerdestal/ad94a32d-1dcb-444c-91e6-e5a041dac2f9_mw1280.webp",
+    "/images/real/rooms/peerdestal/bc008439-c105-4b6b-8182-a0f971dc3c07_mw1280.webp",
+    "/images/real/rooms/peerdestal/c52678b8-4e31-42ca-9a06-98634c545398_mw1280.webp",
+    "/images/real/rooms/peerdestal/cf395257-ac9d-4fa4-a9d3-98657b8a5b32_mw1280.webp"
+];
+
+const content = {
+  nl: {
+    title: "De Peerdestal",
+    headline: "De Peerdestal",
+    intro: "Overnacht in de sfeervolle 'Peerdestal'. Een unieke plek waar het verleden voelbaar is, maar waar u geniet van hedendaags comfort. De ruimte beschikt over een moderne keuken, vloerverwarming en comfortabele 2-persoons bedden voor een heerlijke nachtrust.",
+    galleryTitle: "Sfeerimpressie",
+    rules: {
+      title: "Goed om te weten",
+      items: [
+        { label: "Check-in", value: "Vanaf 15:00" },
+        { label: "Check-out", value: "Tot 10:30" },
+        { label: "Roken", value: "Niet toegestaan" },
+        { label: "Huisdieren", value: "Niet toegestaan" }
+      ]
+    }
+  },
+  en: {
+    title: "The Horse Stable",
+    headline: "The Horse Stable",
+    intro: "Stay in the atmospheric 'Peerdestal'. A unique place where the past is palpable, but where you enjoy contemporary comfort. The space features a modern kitchen, underfloor heating, and comfortable double beds for a wonderful night's sleep.",
+    galleryTitle: "Impressions",
+    rules: {
+      title: "Good to know",
+      items: [
+        { label: "Check-in", value: "From 15:00" },
+        { label: "Check-out", value: "Until 10:30" },
+        { label: "Smoking", value: "Not allowed" },
+        { label: "Pets", value: "Not allowed" }
+      ]
+    }
+  },
+  de: {
+    title: "Der Pferdestall",
+    headline: "Der Pferdestall",
+    intro: "Übernachten Sie im stimmungsvollen 'Peerdestal'. Ein einzigartiger Ort, an dem die Vergangenheit spürbar ist, Sie aber zeitgemäßen Komfort genießen. Der Raum verfügt über eine moderne Küche, Fußbodenheizung und komfortable Doppelbetten für eine wunderbare Nachtruhe.",
+    galleryTitle: "Impressionen",
+    rules: {
+      title: "Gut zu wissen",
+      items: [
+        { label: "Check-in", value: "Ab 15:00" },
+        { label: "Check-out", value: "Bis 10:30" },
+        { label: "Rauchen", value: "Nicht erlaubt" },
+        { label: "Haustiere", value: "Nicht erlaubt" }
+      ]
+    }
+  }
+};
+
+const t = content[lang] || content.nl;
+---
+
+<Layout title={`Boerderij Voorste Eng - ${t.title}`} lang={lang}>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+    
+    <!-- Intro Section -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+        <ScrollReveal animation="fade-up">
+            <h1 class="font-heading text-5xl md:text-7xl font-light mb-8 text-bordeaux tracking-tight">{t.headline}</h1>
+            <p class="text-stone-600 text-xl font-light leading-relaxed">{t.intro}</p>
+            <div class="w-24 h-[1px] bg-bordeaux/30 mx-auto mt-12"></div>
+        </ScrollReveal>
+    </div>
+
+    <!-- Gallery / Carousel -->
+    <div class="mb-24">
+        <ScrollReveal animation="fade-up" delay={0.2}>
+            <ImageCarousel images={images} alt={t.title} />
+        </ScrollReveal>
+    </div>
+
+    <!-- Info / Rules Section -->
+    <div class="bg-foam-white p-12 lg:p-20 rounded-sm border border-stone-100 relative overflow-hidden">
+        <ScrollReveal animation="fade-up">
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                   <h3 class="text-3xl font-heading font-light text-bordeaux mb-6">{t.rules.title}</h3>
+                   <p class="text-slate-600 mb-8">{lang === 'nl' ? 'Wij zorgen voor een zorgeloos verblijf. Hier zijn enkele praktische zaken.' : 'We ensure a carefree stay. Here are some practical matters.'}</p>
+                </div>
+                
+                <div class="bg-white p-8 shadow-sm">
+                   <ul class="space-y-4">
+                      {t.rules.items.map(item => (
+                          <li class="flex justify-between items-center border-b border-stone-100 pb-2 last:border-0 last:pb-0">
+                              <span class="font-bold text-slate-700">{item.label}</span>
+                              <span class="text-slate-500">{item.value}</span>
+                          </li>
+                      ))}
+                   </ul>
+                </div>
+            </div>
+            
+            <!-- Background Watermark -->
+            <div class="absolute -top-20 -right-20 text-[20rem] font-heading text-bordeaux/5 leading-none select-none pointer-events-none">
+                PS
+            </div>
+        </ScrollReveal>
+    </div>
+
+  </div>
+</Layout>

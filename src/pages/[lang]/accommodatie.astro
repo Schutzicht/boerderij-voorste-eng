@@ -16,121 +16,91 @@ const { lang } = Astro.params;
 const content = {
   nl: {
     title: "Accommodatie",
-    headline: "Authentiek Overnachten in Otterlo",
-    intro: "Stap binnen in de wereld van Boerderij Voorste Eng. Onze twee vernieuwde vakantiewoningen, 'De Oude Schuur' en 'De Peerdestal', bieden een unieke combinatie van boerenhistorie en moderne luxe.",
-    sections: [
+    headline: "Onze Verblijven",
+    intro: "Kies voor een verblijf dat bij u past. Of u nu kiest voor de authentieke sfeer van 'De Oude Schuur' of de knusse 'Peerdestal', u geniet altijd van rust, ruimte en luxe.",
+    rooms: [
       {
-        title: "Wonen & Sfeer",
-        desc: "De woonkamers zijn met oog voor detail ingericht. Authentieke houten gebinten worden gecombineerd met een moderne afwerking. Geniet van de vloerverwarming, plof neer op de comfortabele bank en voel u direct thuis.",
-        amenities: ["Smart TV", "Vloerverwarming", "Sfeervol interieur", "Gratis WiFi"],
-        img: "/images/real/living-room/living-room-1.avif"
+        title: "De Oude Schuur",
+        desc: "Een sfeervol verblijf voor 2 personen, waar authentieke details en moderne luxe samenkomen. Geniet van de ruimte en het uitzicht.",
+        img: "/images/real/rooms/oude-schuur/424671ca-f79e-4955-8a75-98dc99c25599_mw1280.webp",
+        link: "/nl/accommodatie/de-oude-schuur",
+        cta: "Bekijk De Oude Schuur"
       },
       {
-        title: "Koken & Tafelen",
-        desc: "De luxe open keuken is van alle gemakken voorzien. Of u nu een uitgebreid ontbijt wilt bereiden of 's avonds gezellig wilt koken: vaatwasser, combi-oven, inductiekookplaat en Nespresso-machine staan voor u klaar.",
-        amenities: ["Compleet uitgerust", "Vaatwasser", "Nespresso", "Combi-oven"],
-        img: "/images/real/kitchen/kitchen-4.avif"
-      },
-      {
-        title: "Slapen & Dromen",
-        desc: "Een goede nachtrust is goud waard. Onze slaapkamers zijn voorzien van luxe boxsprings en hoogwaardig beddengoed. De ensuite badkamers beschikken over een ruime inloopdouche.",
-        amenities: ["Boxspring bedden", "Inloopdouche", "Opgemaakte bedden", "Handdoeken"],
-        img: "/images/real/bedroom/bedroom-1.avif"
-      },
-      {
-        title: "Buitenleven",
-        desc: "Elk appartement beschikt over een eigen privéterras op het zuiden. Geniet van de zon, het uitzicht op de tuin en de rust van de Veluwe. ",
-        amenities: ["Privé terras", "Tuinmeubilair", "Zuidligging", "Natuur"],
-        img: "/images/real/terrace/terrace-1.avif"
+        title: "De Peerdestal",
+        desc: "Overnacht in de voormalige paardenstal, nu omgetoverd tot een luxe verblijf. Knus, comfortabel en van alle gemakken voorzien.",
+        img: "/images/real/rooms/peerdestal/2602d22b-3fe3-4a70-8b4d-b3cf4cac2d5d_mw1280.webp",
+        link: "/nl/accommodatie/de-peerdestal",
+        cta: "Bekijk De Peerdestal"
       }
     ],
     rules: {
-      title: "Goed om te weten",
+      title: "Algemene Informatie",
       items: [
         { label: "Check-in", value: "Vanaf 15:00" },
         { label: "Check-out", value: "Tot 10:30" },
         { label: "Roken", value: "Niet toegestaan" },
-        { label: "Huisdieren", value: "In overleg" }
+        { label: "Huisdieren", value: "Niet toegestaan" }
       ]
     }
   },
   en: {
     title: "Accommodation",
-    headline: "Authentic Stay in Otterlo",
-    intro: "Step into the world of Boerderij Voorste Eng. Our two renovated holiday homes, 'The Old Barn' and 'The Horse Stable', offer a unique combination of farm history and modern luxury.",
-    sections: [
+    headline: "Our Stays",
+    intro: "Choose a stay that suits you. Whether you choose the authentic atmosphere of 'The Old Barn' or the cozy 'Horse Stable', you will always enjoy peace, space, and luxury.",
+    rooms: [
       {
-        title: "Living & Atmosphere",
-        desc: "The living rooms are furnished with an eye for detail. Authentic wooden beams are combined with a modern finish. Enjoy the underfloor heating, sink into the comfortable sofa, and feel right at home.",
-        amenities: ["Smart TV", "Underfloor heating", "Atmospheric interior", "Free WiFi"],
-        img: "/images/real/living-room/living-room-1.avif"
+        title: "The Old Barn",
+        desc: "An atmospheric stay for 2 people, where authentic details and modern luxury meet. Enjoy the space and the view.",
+        img: "/images/real/rooms/oude-schuur/424671ca-f79e-4955-8a75-98dc99c25599_mw1280.webp",
+        link: "/en/accommodation/de-oude-schuur",
+        cta: "View The Old Barn"
       },
       {
-        title: "Cooking & Dining",
-        desc: "The luxury open kitchen is fully equipped. Whether you want to prepare an extensive breakfast or cook a cozy dinner: dishwasher, combi-oven, induction hob, and Nespresso machine are ready for you.",
-        amenities: ["Fully equipped", "Dishwasher", "Nespresso", "Combi-oven"],
-        img: "/images/real/kitchen/kitchen-4.avif"
-      },
-      {
-        title: "Sleep & Dream",
-        desc: "A good night's sleep is priceless. Our bedrooms feature luxury box springs and high-quality bedding. The ensuite bathrooms have a spacious walk-in shower.",
-        amenities: ["Boxspring beds", "Walk-in shower", "Beds made", "Towels"],
-        img: "/images/real/bedroom/bedroom-1.avif"
-      },
-      {
-        title: "Outdoor Living",
-        desc: "Each apartment has its own private south-facing terrace. Enjoy the sun, the view of the garden, and the peace of the Veluwe.",
-        amenities: ["Private terrace", "Garden furniture", "South-facing", "Nature"],
-        img: "/images/real/terrace/terrace-1.avif"
+        title: "The Horse Stable",
+        desc: "Stay in the former horse stable, now transformed into a luxury stay. Cozy, comfortable, and fully equipped.",
+        img: "/images/real/rooms/peerdestal/2602d22b-3fe3-4a70-8b4d-b3cf4cac2d5d_mw1280.webp",
+        link: "/en/accommodation/de-peerdestal",
+        cta: "View The Horse Stable"
       }
     ],
     rules: {
-      title: "Good to know",
+      title: "General Information",
       items: [
         { label: "Check-in", value: "From 15:00" },
         { label: "Check-out", value: "Until 10:30" },
         { label: "Smoking", value: "Not allowed" },
-        { label: "Pets", value: "On request" }
+        { label: "Pets", value: "Not allowed" }
       ]
     }
   },
   de: {
     title: "Unterkunft",
-    headline: "Authentischer Aufenthalt in Otterlo",
-    intro: "Treten Sie ein in die Welt von Boerderij Voorste Eng. Unsere zwei renovierten Ferienhäuser, 'Die Alte Scheune' und 'Der Pferdestall', bieten eine einzigartige Kombination aus bäuerlicher Geschichte und modernem Luxus.",
-    sections: [
+    headline: "Unsere Unterkünfte",
+    intro: "Wählen Sie einen Aufenthalt, der zu Ihnen passt. Ob Sie sich für die authentische Atmosphäre der 'Alten Scheune' oder den gemütlichen 'Pferdestall' entscheiden, Sie genießen immer Ruhe, Weite und Luxus.",
+    rooms: [
       {
-        title: "Wohnen & Atmosphäre",
-        desc: "Die Wohnzimmer sind mit Liebe zum Detail eingerichtet. Authentische Holzbalken werden mit moderner Ausstattung kombiniert. Genießen Sie die Fußbodenheizung, lassen Sie sich auf das bequeme Sofa fallen und fühlen Sie sich wie zu Hause.",
-        amenities: ["Smart TV", "Fußbodenheizung", "Atmosphärisches Interieur", "Gratis WiFi"],
-        img: "/images/real/living-room/living-room-1.avif"
+        title: "Die Alte Scheune",
+        desc: "Ein stimmungsvoller Aufenthalt für 2 Personen, wo authentische Details und moderner Luxus aufeinandertreffen. Genießen Sie den Raum und die Aussicht.",
+        img: "/images/real/rooms/oude-schuur/424671ca-f79e-4955-8a75-98dc99c25599_mw1280.webp",
+        link: "/de/accommodatie/de-oude-schuur",
+        cta: "Die Alte Scheune ansehen"
       },
       {
-        title: "Kochen & Essen",
-        desc: "Die luxuriöse offene Küche ist komplett ausgestattet. Ob Sie ein ausgiebiges Frühstück zubereiten oder abends gemütlich kochen möchten: Spülmaschine, Kombiofen, Induktionskochfeld und Nespresso-Maschine stehen für Sie bereit.",
-        amenities: ["Komplett ausgestattet", "Spülmaschine", "Nespresso", "Kombiofen"],
-        img: "/images/real/kitchen/kitchen-4.avif"
-      },
-      {
-        title: "Schlafen & Träumen",
-        desc: "Guter Schlaf ist unbezahlbar. Unsere Schlafzimmer verfügen über luxuriöse Boxspringbetten und hochwertige Bettwäsche. Die Ensuite-Badezimmer haben eine geräumige ebenerdige Dusche.",
-        amenities: ["Boxspringbetten", "Ebenerdige Dusche", "Gemachte Betten", "Handtücher"],
-        img: "/images/real/bedroom/bedroom-1.avif"
-      },
-      {
-        title: "Leben im Freien",
-        desc: "Jedes Apartment verfügt über eine eigene Südterrasse. Genießen Sie die Sonne, den Blick in den Garten und die Ruhe der Veluwe.",
-        amenities: ["Private Terrasse", "Gartenmöbel", "Südlage", "Natur"],
-        img: "/images/real/terrace/terrace-1.avif"
+        title: "Der Pferdestall",
+        desc: "Übernachten Sie im ehemaligen Pferdestall, der jetzt in eine luxuriöse Unterkunft verwandelt wurde. Gemütlich, komfortabel und komplett ausgestattet.",
+        img: "/images/real/rooms/peerdestal/2602d22b-3fe3-4a70-8b4d-b3cf4cac2d5d_mw1280.webp",
+        link: "/de/accommodatie/de-peerdestal",
+        cta: "Der Pferdestall ansehen"
       }
     ],
     rules: {
-      title: "Gut zu wissen",
+      title: "Allgemeine Informationen",
       items: [
         { label: "Check-in", value: "Ab 15:00" },
         { label: "Check-out", value: "Bis 10:30" },
         { label: "Rauchen", value: "Nicht erlaubt" },
-        { label: "Haustiere", value: "Auf Anfrage" }
+        { label: "Haustiere", value: "Nicht erlaubt" }
       ]
     }
   }
@@ -152,18 +122,18 @@ const t = content[lang] || content.nl;
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
     
-    <div class="space-y-16 lg:space-y-32">
-       {t.sections.map((section, index) => (
+    <div class="space-y-24">
+       {t.rooms.map((room, index) => (
          <div class={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12 lg:gap-24`}>
             
             {/* Image Side */}
-            <div class="w-full lg:w-1/2 relative group">
+            <div class="w-full lg:w-1/2 relative group cursor-pointer" onclick={`window.location.href='${room.link}'`}>
                <ScrollReveal animation={index % 2 === 0 ? 'slide-left' : 'slide-right'} duration={1.2}>
                    <div class="relative overflow-hidden rounded-sm shadow-2xl aspect-[4/3]">
                       <ParallaxImage 
-                        src={section.img} 
-                        alt={section.title} 
-                        class="h-full w-full object-cover"
+                        src={room.img} 
+                        alt={room.title} 
+                        class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
                    </div>
@@ -175,19 +145,14 @@ const t = content[lang] || content.nl;
             {/* Content Side */}
             <div class="w-full lg:w-1/2">
                 <ScrollReveal animation="fade-up" delay={0.2}>
-                    <h2 class="text-4xl font-heading font-light text-bordeaux mb-6">{section.title}</h2>
+                    <h2 class="text-4xl font-heading font-light text-bordeaux mb-6">{room.title}</h2>
                     <p class="text-lg text-slate-600 leading-relaxed mb-8 font-light border-l-2 border-stone-200 pl-6">
-                       {section.desc}
+                       {room.desc}
                     </p>
                     
-                    <div class="grid grid-cols-2 gap-4">
-                        {section.amenities.map(amenity => (
-                            <div class="flex items-center text-sm font-medium text-slate-500">
-                                <span class="w-1.5 h-1.5 bg-bordeaux/40 rounded-full mr-3"></span>
-                                {amenity}
-                            </div>
-                        ))}
-                    </div>
+                    <a href={room.link} class="inline-block px-8 py-4 bg-bordeaux text-white font-bold uppercase tracking-widest text-xs hover:bg-slate-900 transition-colors rounded-sm shadow-lg">
+                        {room.cta}
+                    </a>
                 </ScrollReveal>
             </div>
 
@@ -201,7 +166,7 @@ const t = content[lang] || content.nl;
             <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                    <h3 class="text-3xl font-heading font-light text-bordeaux mb-6">{t.rules.title}</h3>
-                   <p class="text-slate-600 mb-8">{lang === 'nl' ? 'Wij streven naar een zorgeloos verblijf voor al onze gasten. Hier zijn enkele praktische zaken om rekening mee te houden.' : 'We strive for a carefree stay for all our guests. Here are some practical matters to keep in mind.'}</p>
+                   <p class="text-slate-600 mb-8">{lang === 'nl' ? 'Wij streven naar een zorgeloos verblijf. Hier zijn enkele algemene zaken.' : 'We strive for a carefree stay. Here are some general matters.'}</p>
                 </div>
                 
                 <div class="bg-white p-8 shadow-sm">
