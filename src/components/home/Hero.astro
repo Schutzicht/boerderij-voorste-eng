@@ -21,7 +21,7 @@ const content = {
 const t = content[lang] || content.nl;
 ---
 
-<section class="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+<section class="relative h-[85vh] md:h-screen min-h-[600px] md:min-h-[800px] flex items-center justify-center overflow-hidden">
   
   <div class="absolute inset-0 z-0">
     <img 
@@ -35,23 +35,23 @@ const t = content[lang] || content.nl;
   </div>
 
   <!-- Content -->
-  <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
+  <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-0 md:mt-20">
     
     <ScrollReveal animation="fade-up" duration={1.2} delay={0.2}>
-        <p class="text-white/90 text-sm md:text-base uppercase tracking-[0.3em] mb-6 font-medium">
+        <p class="text-white/90 text-xs md:text-base uppercase tracking-[0.3em] mb-4 md:mb-6 font-medium">
             Otterlo, Hoge Veluwe
         </p>
     </ScrollReveal>
 
     <ScrollReveal animation="fade-up" duration={1.5} delay={0.4}>
-        <h1 class="text-5xl md:text-8xl lg:text-9xl text-white font-heading font-light tracking-tight leading-none mb-8 drop-shadow-sm">
+        <h1 class="text-5xl md:text-8xl lg:text-9xl text-white font-heading font-light tracking-tight leading-none mb-6 md:mb-8 drop-shadow-sm">
             Boerderij<br/><span class="italic font-normal">Voorste Eng</span>
         </h1>
     </ScrollReveal>
 
     <ScrollReveal animation="fade-up" duration={1.2} delay={0.8}>
-        <div class="w-16 h-[1px] bg-white/60 mx-auto mb-8"></div>
-        <p class="text-white/90 text-lg md:text-xl font-light tracking-wide max-w-xl mx-auto mb-12">
+        <div class="w-12 md:w-16 h-[1px] bg-white/60 mx-auto mb-6 md:mb-8"></div>
+        <p class="text-white/90 text-base md:text-xl font-light tracking-wide max-w-xl mx-auto mb-8 md:mb-12">
             {lang === 'nl' ? 'Luxe vakantiewoningen in het hart van Otterlo' : (lang === 'de' ? 'Luxusferienhäuser im Herzen von Otterlo' : 'Luxury holiday homes in the heart of Otterlo')}
         </p>
     </ScrollReveal>
