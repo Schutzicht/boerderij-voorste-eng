@@ -56,7 +56,7 @@ const lang = getLangFromUrl(Astro.url);
 		<Footer lang={lang} />
 		<!-- Sticky 'Book Now' Button (Mobile Only) -->
 		<div class="fixed bottom-4 left-4 z-50 md:hidden pointer-events-none">
-			<a href={`/${lang}/contact`} class="bg-bordeaux hover:bg-bordeaux-dark text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg transform hover:scale-105 text-sm uppercase tracking-wide pointer-events-auto block">
+			<a id="book-now-btn" href={`/${lang}/contact`} class="bg-bordeaux hover:bg-bordeaux-dark text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg transform hover:scale-105 text-sm uppercase tracking-wide pointer-events-auto block border-2 border-transparent">
 				{lang === 'nl' ? 'Nu Boeken' : (lang === 'de' ? 'Jetzt Buchen' : 'Book Now')}
 			</a>
 		</div>
@@ -66,6 +66,7 @@ const lang = getLangFromUrl(Astro.url);
         <script>
             import Lenis from 'lenis'
 
+            // Smooth Scrolling
             const lenis = new Lenis({
                 duration: 1.2,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -83,6 +84,33 @@ const lang = getLangFromUrl(Astro.url);
             }
 
             requestAnimationFrame(raf)
+
+            // Dynamic Button Color on Footer Intersection
+            const observer = new IntersectionObserver((entries) => {
+                const button = document.querySelector('#book-now-btn');
+                
+                if (button) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Footer is visible - Turn button white
+                            button.classList.remove('bg-bordeaux', 'text-white', 'hover:bg-bordeaux-dark');
+                            button.classList.add('bg-white', 'text-bordeaux', 'hover:bg-stone-100');
+                        } else {
+                            // Footer is hidden - Revert to red
+                            button.classList.remove('bg-white', 'text-bordeaux', 'hover:bg-stone-100');
+                            button.classList.add('bg-bordeaux', 'text-white', 'hover:bg-bordeaux-dark');
+                        }
+                    });
+                }
+            }, {
+                root: null,
+                threshold: 0.1 // Trigger when 10% of footer is visible
+            });
+
+            const footer = document.querySelector('footer');
+            if (footer) {
+                observer.observe(footer);
+            }
         </script>
 	</body>
 </html>
