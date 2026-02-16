@@ -55,8 +55,8 @@ const lang = getLangFromUrl(Astro.url);
 		</main>
 		<Footer lang={lang} />
 		<!-- Sticky 'Book Now' Button (Mobile Only) -->
-		<div class="fixed bottom-0 left-0 w-full p-4 bg-white/90 backdrop-blur-md border-t border-stone-200 md:hidden z-50 flex justify-center items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-			<a href={`/${lang}/contact`} class="bg-bordeaux hover:bg-bordeaux-dark text-white font-bold py-3 px-8 rounded-full transition duration-300 shadow-md transform hover:scale-105 w-full text-center max-w-sm">
+		<div class="fixed bottom-4 left-4 z-50 md:hidden pointer-events-none">
+			<a href={`/${lang}/contact`} class="bg-bordeaux hover:bg-bordeaux-dark text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg transform hover:scale-105 text-sm uppercase tracking-wide pointer-events-auto block">
 				{lang === 'nl' ? 'Nu Boeken' : (lang === 'de' ? 'Jetzt Buchen' : 'Book Now')}
 			</a>
 		</div>
