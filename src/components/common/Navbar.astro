@@ -213,22 +213,38 @@ const currentNav = navItems[lang] || navItems.nl;
     const mobileMenu = document.getElementById('mobile-menu');
     const menuLinks = mobileMenu?.querySelectorAll('a');
 
+    // Remove existing listeners to be safe
+    const newMenuBtn = menuBtn?.cloneNode(true);
+    const newCloseBtn = closeBtn?.cloneNode(true);
+    
+    // Replace old buttons to clear listeners
+    if (menuBtn && newMenuBtn) menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
+    if (closeBtn && newCloseBtn) closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+
+    const activeMenuBtn = document.getElementById('mobile-menu-btn');
+    const activeCloseBtn = document.getElementById('close-menu-btn');
+
     function toggleMenu() {
-      mobileMenu?.classList.toggle('translate-x-full');
-      document.body.classList.toggle('overflow-hidden');
+      if (mobileMenu) {
+          mobileMenu.classList.toggle('translate-x-full');
+          document.body.classList.toggle('overflow-hidden');
+      }
     }
 
-    // Remove existing listeners if any (though usually fresh DOM)
-    menuBtn?.removeEventListener('click', toggleMenu);
-    closeBtn?.removeEventListener('click', toggleMenu);
-
-    menuBtn?.addEventListener('click', toggleMenu);
-    closeBtn?.addEventListener('click', toggleMenu);
+    activeMenuBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+    });
+    
+    activeCloseBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+    });
 
     // Close menu when a link is clicked
     menuLinks?.forEach(link => {
       link.addEventListener('click', () => {
-          if (!mobileMenu?.classList.contains('translate-x-full')) {
+          if (mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
               toggleMenu();
           }
       });
