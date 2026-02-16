@@ -117,54 +117,92 @@ const currentNav = navItems[lang] || navItems.nl;
 
 </nav>
 
-<!-- Mobile Menu Overlay - Move outside nav to avoid backdrop-blur containment context -->
+<!-- Mobile Menu Overlay -->
 <div 
   id="mobile-menu"
-  class="fixed inset-0 bg-white z-[60] transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center items-center space-y-8"
+  class="fixed inset-0 bg-stone-50 z-[60] transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col"
 >
-  <div class="absolute top-0 right-0 p-6 pt-5 pr-6">
-       <button 
+  <!-- Header with Logo and Close Button -->
+  <div class="flex justify-between items-center p-6 border-b border-dune-sand/10">
+      <div class="w-32">
+        <Logo class="text-bordeaux" />
+      </div>
+      <button 
         id="close-menu-btn"
         type="button" 
-        class="text-bordeaux hover:text-bordeaux-dark p-2 focus:outline-none"
+        class="text-bordeaux hover:text-bordeaux-dark p-2 focus:outline-none bg-foam-white rounded-full shadow-sm"
       >
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
   </div>
 
   <!-- Mobile Nav Links -->
-  <div class="flex flex-col space-y-6 text-center w-full max-w-xs">
-    {currentNav.map((item) => (
-      <div class="flex flex-col items-center">
-        <a
-          href={item.href}
-          class="text-3xl font-heading font-light text-slate-800 hover:text-bordeaux transition-colors duration-200"
-        >
-          {item.name}
-        </a>
-        {item.children && (
-           <div class="flex flex-col space-y-3 mt-4 w-full border-l border-bordeaux/20 pl-4 ml-4">
-             {item.children.map((child) => (
-               <a
-                 href={child.href}
-                 class="text-xl font-heading font-light text-slate-500 hover:text-bordeaux transition-colors duration-200 text-left"
-               >
-                 {child.name}
-               </a>
-             ))}
-           </div>
-        )}
-      </div>
-    ))}
+  <div class="flex-grow overflow-y-auto py-8 px-6">
+    <div class="flex flex-col space-y-2">
+      {currentNav.map((item) => (
+        <div class="border-b border-dune-sand/10 last:border-0 pb-2" x-data="{ expanded: false }">
+          {item.children ? (
+             <div>
+                <button 
+                  @click="expanded = !expanded"
+                  class="flex justify-between items-center w-full py-3 text-left group"
+                >
+                  <span class="text-2xl font-heading font-light text-slate-800 group-hover:text-bordeaux transition-colors">{item.name}</span>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke-width="1.5" 
+                    stroke="currentColor" 
+                    class="w-6 h-6 text-slate-400 transition-transform duration-300"
+                    :class="expanded ? 'rotate-180 text-bordeaux' : ''"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </button>
+                
+                <div 
+                    x-show="expanded" 
+                    x-collapse
+                    class="pl-4 pb-2 space-y-3"
+                    style="display: none;" 
+                >
+                   {item.children.map((child) => (
+                     <a
+                       href={child.href}
+                       class="block text-lg font-heading font-light text-slate-500 hover:text-bordeaux py-2 border-l-2 border-transparent hover:border-bordeaux pl-3 transition-all"
+                     >
+                       {child.name}
+                     </a>
+                   ))}
+                </div>
+             </div>
+          ) : (
+            <a
+              href={item.href}
+              class="block py-3 text-2xl font-heading font-light text-slate-800 hover:text-bordeaux transition-colors"
+            >
+              {item.name}
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
   </div>
 
-  <!-- Mobile Language Selector -->
-  <div class="flex items-center space-x-8 pt-8 border-t border-gray-100 mt-8 w-64 justify-center">
-      <a href="/nl" class={`text-xl font-heading font-light transition-colors ${lang === 'nl' ? 'text-bordeaux' : 'text-slate-400'}`}>NL</a>
-      <a href="/en" class={`text-xl font-heading font-light transition-colors ${lang === 'en' ? 'text-bordeaux' : 'text-slate-400'}`}>EN</a>
-      <a href="/de" class={`text-xl font-heading font-light transition-colors ${lang === 'de' ? 'text-bordeaux' : 'text-slate-400'}`}>DE</a>
+  <!-- Mobile Language Selector & Footer Info -->
+  <div class="p-8 border-t border-dune-sand/10 bg-white">
+      <div class="flex items-center space-x-6 mb-8">
+          <a href="/nl" class={`text-lg font-bold transition-colors ${lang === 'nl' ? 'text-bordeaux underline underline-offset-4' : 'text-slate-400'}`}>NL</a>
+          <a href="/en" class={`text-lg font-bold transition-colors ${lang === 'en' ? 'text-bordeaux underline underline-offset-4' : 'text-slate-400'}`}>EN</a>
+          <a href="/de" class={`text-lg font-bold transition-colors ${lang === 'de' ? 'text-bordeaux underline underline-offset-4' : 'text-slate-400'}`}>DE</a>
+      </div>
+      <p class="text-xs text-slate-400 font-light">
+          Boerderij Voorste Eng<br>
+          Edeseweg 2, Otterlo
+      </p>
   </div>
 </div>
 
