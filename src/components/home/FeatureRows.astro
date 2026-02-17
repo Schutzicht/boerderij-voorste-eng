@@ -11,19 +11,22 @@ const content = {
         title: "Direct aan de Hoge Veluwe",
         desc: "Binnen enkele minuten staat u midden in de natuur. Geniet van de eindeloze heidevelden, bossen en zandverstuivingen van Nationaal Park De Hoge Veluwe.",
         img: "/images/real/terrace/terrace-1.avif",
-        stat: "1 km afstand"
+        stat: "1 km afstand",
+        link: `/${lang}/omgeving`
       },
       {
         title: "Luxe comfort & Sfeer",
         desc: "Uw eigen oase van rust in onze stijlvol verbouwde schuur. De appartementen zijn voorzien van een luxe keuken, boxspring bedden en een privéterras.",
         img: "/images/real/living-room/living-room-5.avif",
-        stat: "Nieuw (2025)"
+        stat: "Nieuw (2025)",
+        link: `/${lang}/accommodatie`
       },
       {
         title: "Hartje Otterlo",
         desc: "Gelegen in het gezellige centrum van Otterlo, met restaurants, winkels en het Kröller-Müller Museum om de hoek. Gratis parkeren op eigen terrein.",
         img: "/images/real/exterior/exterior-1.avif",
-        stat: "Centrum"
+        stat: "Centrum",
+        link: `/${lang}/omgeving`
       }
     ]
   },
@@ -33,19 +36,22 @@ const content = {
         title: "Right next to Hoge Veluwe",
         desc: "Within minutes you are surrounded by nature. Enjoy the endless heathlands, forests, and sand drifts of National Park De Hoge Veluwe.",
         img: "/images/real/terrace/terrace-1.avif",
-        stat: "1 km away"
+        stat: "1 km away",
+        link: `/${lang}/omgeving`
       },
       {
         title: "Luxury comfort & Atmosphere",
         desc: "Your own oasis of peace in our stylishly renovated barn. The apartments feature a luxury kitchen, boxspring beds, and a private terrace.",
         img: "/images/real/living-room/living-room-5.avif",
-        stat: "New (2025)"
+        stat: "New (2025)",
+        link: `/${lang}/accommodatie`
       },
       {
         title: "Heart of Otterlo",
         desc: "Located in the cozy center of Otterlo, with restaurants, shops, and the Kröller-Müller Museum around the corner. Free parking on site.",
         img: "/images/real/exterior/exterior-1.avif",
-        stat: "Center"
+        stat: "Center",
+        link: `/${lang}/omgeving`
       }
     ]
   },
@@ -55,19 +61,22 @@ const content = {
         title: "Direkt am Hoge Veluwe",
         desc: "In wenigen Minuten sind Sie mitten in der Natur. Genießen Sie die endlosen Heidefelder, Wälder und Sandverwehungen des Nationalparks De Hoge Veluwe.",
         img: "/images/real/terrace/terrace-1.avif",
-        stat: "1 km entfernt"
+        stat: "1 km entfernt",
+        link: `/${lang}/omgeving`
       },
       {
         title: "Luxuskomfort & Atmosphäre",
         desc: "Ihre eigene Oase der Ruhe in unserer stilvoll renovierten Scheune. Die Apartments verfügen über eine Luxusküche, Boxspringbetten und eine private Terrasse.",
         img: "/images/real/living-room/living-room-5.avif",
-        stat: "Neu (2025)"
+        stat: "Neu (2025)",
+        link: `/${lang}/accommodatie`
       },
       {
         title: "Im Herzen von Otterlo",
         desc: "Im gemütlichen Zentrum von Otterlo gelegen, mit Restaurants, Geschäften und dem Kröller-Müller Museum um die Ecke. Kostenlose Parkplätze auf dem Gelände.",
         img: "/images/real/exterior/exterior-1.avif",
-        stat: "Zentrum"
+        stat: "Zentrum",
+        link: `/${lang}/omgeving`
       }
     ]
   }
@@ -80,22 +89,22 @@ const t = content[lang] || content.nl;
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     {t.features.map((feature, index) => (
-      <div class={`flex flex-col md:flex-row items-center gap-12 md:gap-24 mb-16 md:mb-32 last:mb-0 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+      <div class={`flex flex-col md:flex-row items-center gap-12 md:gap-24 mb-24 md:mb-32 last:mb-0 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
         
         <!-- Image Side -->
         <div class="w-full md:w-1/2 relative group">
            <ScrollReveal animation={index % 2 === 0 ? 'slide-left' : 'slide-right'} duration={1.2}>
-               <div class="relative overflow-hidden rounded-sm aspect-[4/3] md:aspect-[3/4] lg:aspect-[4/3]">
+               <a href={feature.link} class="block relative overflow-hidden rounded-sm aspect-[4/3] md:aspect-[3/4] lg:aspect-[4/3] group-hover:shadow-2xl transition-all duration-500">
                   <ParallaxImage 
                     src={feature.img === 'GARDEN_PLACEHOLDER' ? '/images/tranquil-dunes.png' : feature.img} 
                     alt={feature.title} 
-                    class="h-full w-full object-cover"
+                    class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-1000"
                   />
                   <!-- Stat Badge overlay -->
                   <div class="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 text-bordeaux font-heading font-bold shadow-lg z-10 border border-white/20">
                     {feature.stat}
                   </div>
-               </div>
+               </a>
            </ScrollReveal>
         </div>
 
@@ -109,11 +118,13 @@ const t = content[lang] || content.nl;
                <p class="text-lg text-slate-600 font-light leading-relaxed mb-8 max-w-lg">
                  {feature.desc}
                </p>
-               <div class="flex items-center text-sm font-bold uppercase tracking-widest text-bordeaux group cursor-pointer">
-                  <span class="border-b border-bordeaux pb-1">
-                      {lang === 'nl' ? 'Ontdek meer' : lang === 'de' ? 'Mehr entdecken' : 'Discover more'}
-                  </span>
-               </div>
+               
+               <a href={feature.link} class="group inline-flex items-center gap-3 px-8 py-4 bg-bordeaux text-white font-bold uppercase tracking-widest text-xs hover:bg-slate-900 transition-all duration-300 shadow-lg hover:shadow-xl rounded-sm">
+                  <span>{lang === 'nl' ? 'Ontdek meer' : lang === 'de' ? 'Mehr entdecken' : 'Discover more'}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+               </a>
            </ScrollReveal>
         </div>
 
