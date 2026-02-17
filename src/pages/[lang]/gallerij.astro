@@ -27,33 +27,33 @@ const subtitle = {
 
 const images = [
   // Exterior
-  "/images/real/exterior/exterior-1.avif",
-  "/images/real/exterior/exterior-2.avif",
-  "/images/real/exterior/exterior-3.avif",
-  "/images/real/exterior/exterior-4.avif",
+  { src: "/images/real/exterior/exterior-1.avif", class: "md:row-span-2" },
+  { src: "/images/real/exterior/exterior-2.avif", class: "md:row-span-2" },
+  { src: "/images/real/exterior/exterior-3.avif", class: "md:row-span-2" },
+  { src: "/images/real/exterior/exterior-4.avif", class: "md:row-span-2" },
   // Interior - Living Room
-  "/images/real/living-room/living-room-1.avif",
-  "/images/real/living-room/living-room-2.avif",
-  "/images/real/living-room/living-room-3.avif",
+  { src: "/images/real/living-room/living-room-1.avif", class: "md:row-span-2" },
+  { src: "/images/real/living-room/living-room-2.avif", class: "md:row-span-2" },
+  { src: "/images/real/living-room/living-room-3.avif", class: "md:row-span-2" },
   // Interior - Bedroom
-  "/images/real/bedroom/bedroom-1.avif",
-  "/images/real/bedroom/bedroom-2.avif",
+  { src: "/images/real/bedroom/bedroom-1.avif", class: "md:row-span-2" },
+  { src: "/images/real/bedroom/bedroom-2.avif", class: "md:row-span-2" },
   // Interior - Kitchen
-  "/images/real/kitchen/kitchen-1.avif",
-  "/images/real/kitchen/kitchen-2.avif",
+  { src: "/images/real/kitchen/kitchen-1.avif", class: "md:row-span-2" },
+  { src: "/images/real/kitchen/kitchen-2.avif", class: "md:row-span-2" },
   // Interior - Bathroom
-  "/images/real/bathroom/bathroom-1.avif",
-  "/images/real/rooms/peerdestal/badkamer-nieuw-1.jpg",
-  "/images/real/rooms/peerdestal/badkamer-nieuw-2.jpg",
+  { src: "/images/real/bathroom/bathroom-1.avif", class: "md:row-span-2" },
+  { src: "/images/real/rooms/peerdestal/badkamer-nieuw-1.jpg", class: "md:row-span-2" },
+  { src: "/images/real/rooms/peerdestal/badkamer-nieuw-2.jpg", class: "md:row-span-2" },
   // Exterior - Terrace & Breakfast
-  "/images/real/terrace/terrace-1.avif",
-  "/images/real/rooms/peerdestal/terras-ontbijt.jpg",
-  "/images/real/rooms/peerdestal/ontbijt-terras-detail.jpg",
+  { src: "/images/real/terrace/terrace-1.avif", class: "md:row-span-2" },
+  { src: "/images/real/rooms/peerdestal/terras-ontbijt.jpg", class: "md:row-span-2" },
+  { src: "/images/real/rooms/peerdestal/ontbijt-terras-detail.jpg", class: "md:row-span-2" },
   // Details & Atmosphere
-  "/images/real/rooms/oude-schuur/kapstok-detail.jpg",
-  "/images/real/details/boek-op-stoel.jpg",
-  "/images/real/details/boek-salontafel.jpg",
-  "/images/real/details/lichtinval-woonkamer.jpg"
+  { src: "/images/real/rooms/oude-schuur/kapstok-detail.jpg", class: "md:row-span-2" },
+  { src: "/images/real/details/boek-op-stoel.jpg", class: "md:row-span-2" },
+  { src: "/images/real/details/boek-salontafel.jpg", class: "md:row-span-2" },
+  { src: "/images/real/details/lichtinval-woonkamer.jpg", class: "md:row-span-2" }
 ];
 ---
 
@@ -69,35 +69,14 @@ const images = [
 
   <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 pb-32">
     <!-- Masonry Layout using CSS columns -->
-    <!-- Innovative Mosaic Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[300px]">
-      {images.map((img, index) => {
-        // Determine layout class based on index pattern
-        let gridClass = "";
-        
-        // Pattern: 
-        // 0: Big (2x2)
-        // 1, 2: Standard
-        // 3: Wide (2x1)
-        // 4, 5: Standard
-        // 6: Big (2x2) ...
-        
-        const patternIndex = index % 12; // Repeat pattern every 12 images
-        
-        if (patternIndex === 0 || patternIndex === 7) {
-            gridClass = "md:col-span-2 md:row-span-2";
-        } else if (patternIndex === 3 || patternIndex === 8) {
-             gridClass = "md:col-span-2";
-        } else if (patternIndex === 5) {
-             gridClass = "md:row-span-2";
-        }
-        
-        return (
-            <div class={`relative group cursor-pointer overflow-hidden rounded-sm ${gridClass}`} onclick={`openLightbox(${index})`}>
+    <!-- Smart Vertical Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-[250px] md:auto-rows-[300px]">
+      {images.map((img, index) => (
+            <div class={`relative group cursor-pointer overflow-hidden rounded-sm ${img.class}`} onclick={`openLightbox(${index})`}>
               <ScrollReveal animation="fade-up" delay={(index % 4) * 0.1} duration={0.8}>
                  <div class="w-full h-full relative">
                     <img 
-                      src={img} 
+                      src={img.src} 
                       alt={`Gallery image ${index + 1}`} 
                       class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                       loading="lazy"
@@ -117,8 +96,7 @@ const images = [
                  </div>
               </ScrollReveal>
             </div>
-        );
-      })}
+      ))}
     </div>
   </div>
 </Layout>
@@ -186,7 +164,7 @@ const images = [
     lightboxImg.style.opacity = '0.5';
     // Small timeout to create a slight transition effect between images
     setTimeout(() => {
-        lightboxImg.src = images[currentIndex];
+        lightboxImg.src = images[currentIndex].src;
         lightboxImg.onload = () => {
             lightboxImg.style.opacity = '1';
         };
