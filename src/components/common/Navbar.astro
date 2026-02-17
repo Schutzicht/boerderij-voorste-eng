@@ -50,7 +50,7 @@ const navItems = {
 const currentNav = navItems[lang] || navItems.nl;
 ---
 
-<nav id="main-nav" class="fixed w-full z-50 transition-all duration-500 py-6 bg-transparent border-b border-transparent">
+<nav id="main-nav" class="fixed w-full z-50 transition-all duration-500 py-4 bg-foam-white/90 backdrop-blur-md border-b border-dune-sand/30">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-20 items-center">
       <div class="flex-shrink-0 flex items-center z-50 logo-container transition-transform duration-500 origin-left">
@@ -281,18 +281,18 @@ const currentNav = navItems[lang] || navItems.nl;
 
       function updateHeader() {
           if (window.scrollY > 50) {
-              // Scrolled State: Compact, Glass, Shadow
-              nav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
-              nav.classList.remove('bg-transparent', 'py-6', 'border-transparent');
+              // Scrolled State: Compact, More Opaque, Shadow
+              nav.classList.add('bg-white/95', 'shadow-md', 'py-2');
+              nav.classList.remove('bg-foam-white/90', 'py-4', 'border-dune-sand/30');
               
               // Animate Logo shrinking
               if (logoContainer) {
                   logoContainer.classList.add('scale-90');
               }
           } else {
-              // Top State: Spacious, Transparent
-              nav.classList.add('bg-transparent', 'py-6', 'border-transparent');
-              nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+              // Top State: Normal Size, Glassy, Subtle Border
+              nav.classList.add('bg-foam-white/90', 'py-4', 'border-dune-sand/30');
+              nav.classList.remove('bg-white/95', 'shadow-md', 'py-2');
               
               // Reset Logo
               if (logoContainer) {
