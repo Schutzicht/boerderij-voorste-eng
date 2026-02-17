@@ -43,8 +43,13 @@ const t = content[lang] || content.nl;
   <!-- Skyline Removed -->
 
   <!-- Main Blue Block -->
-  <div class="bg-bordeaux pt-12 pb-12 relative z-20">
-      <div class="max-w-7xl mx-auto px-4">
+  <div class="bg-bordeaux pt-12 pb-12 relative z-20 overflow-hidden">
+      <!-- Watermark VE -->
+      <div class="absolute -bottom-20 -right-10 leading-none select-none pointer-events-none z-0 opacity-10">
+          <span class="font-heading text-[15rem] md:text-[25rem] lg:text-[35rem] font-bold text-white tracking-tighter">VE</span>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 relative z-10">
         
         <ScrollReveal animation="fade-up" duration={1.2}>
             
