@@ -27,33 +27,33 @@ const subtitle = {
 
 const images = [
   // Exterior
-  { src: "/images/real/exterior/exterior-1.avif", class: "md:row-span-2" },
-  { src: "/images/real/exterior/exterior-2.avif", class: "md:row-span-2" },
-  { src: "/images/real/exterior/exterior-3.avif", class: "md:row-span-2" },
-  { src: "/images/real/exterior/exterior-4.avif", class: "md:row-span-2" },
+  { src: "/images/real/exterior/exterior-1.avif" },
+  { src: "/images/real/exterior/exterior-2.avif" },
+  { src: "/images/real/exterior/exterior-3.avif" },
+  { src: "/images/real/exterior/exterior-4.avif" },
   // Interior - Living Room
-  { src: "/images/real/living-room/living-room-1.avif", class: "md:row-span-2" },
-  { src: "/images/real/living-room/living-room-2.avif", class: "md:row-span-2" },
-  { src: "/images/real/living-room/living-room-3.avif", class: "md:row-span-2" },
+  { src: "/images/real/living-room/living-room-1.avif" },
+  { src: "/images/real/living-room/living-room-2.avif" },
+  { src: "/images/real/living-room/living-room-3.avif" },
   // Interior - Bedroom
-  { src: "/images/real/bedroom/bedroom-1.avif", class: "md:row-span-2" },
-  { src: "/images/real/bedroom/bedroom-2.avif", class: "md:row-span-2" },
+  { src: "/images/real/bedroom/bedroom-1.avif" },
+  { src: "/images/real/bedroom/bedroom-2.avif" },
   // Interior - Kitchen
-  { src: "/images/real/kitchen/kitchen-1.avif", class: "md:row-span-2" },
-  { src: "/images/real/kitchen/kitchen-2.avif", class: "md:row-span-2" },
+  { src: "/images/real/kitchen/kitchen-1.avif" },
+  { src: "/images/real/kitchen/kitchen-2.avif" },
   // Interior - Bathroom
-  { src: "/images/real/bathroom/bathroom-1.avif", class: "md:row-span-2" },
-  { src: "/images/real/rooms/peerdestal/badkamer-nieuw-1.jpg", class: "md:row-span-2" },
-  { src: "/images/real/rooms/peerdestal/badkamer-nieuw-2.jpg", class: "md:row-span-2" },
+  { src: "/images/real/bathroom/bathroom-1.avif" },
+  { src: "/images/real/rooms/peerdestal/badkamer-nieuw-1.jpg" },
+  { src: "/images/real/rooms/peerdestal/badkamer-nieuw-2.jpg" },
   // Exterior - Terrace & Breakfast
-  { src: "/images/real/terrace/terrace-1.avif", class: "md:row-span-2" },
-  { src: "/images/real/rooms/peerdestal/terras-ontbijt.jpg", class: "md:row-span-2" },
-  { src: "/images/real/rooms/peerdestal/ontbijt-terras-detail.jpg", class: "md:row-span-2" },
+  { src: "/images/real/terrace/terrace-1.avif" },
+  { src: "/images/real/rooms/peerdestal/terras-ontbijt.jpg" },
+  { src: "/images/real/rooms/peerdestal/ontbijt-terras-detail.jpg" },
   // Details & Atmosphere
-  { src: "/images/real/rooms/oude-schuur/kapstok-detail.jpg", class: "md:row-span-2" },
-  { src: "/images/real/details/boek-op-stoel.jpg", class: "md:row-span-2" },
-  { src: "/images/real/details/boek-salontafel.jpg", class: "md:row-span-2" },
-  { src: "/images/real/details/lichtinval-woonkamer.jpg", class: "md:row-span-2" }
+  { src: "/images/real/rooms/oude-schuur/kapstok-detail.jpg" },
+  { src: "/images/real/details/boek-op-stoel.jpg" },
+  { src: "/images/real/details/boek-salontafel.jpg" },
+  { src: "/images/real/details/lichtinval-woonkamer.jpg" }
 ];
 ---
 
@@ -69,16 +69,16 @@ const images = [
 
   <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 pb-32">
     <!-- Masonry Layout using CSS columns -->
-    <!-- Smart Vertical Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-[250px] md:auto-rows-[300px]">
+    <!-- CSS Masonry Layout (Gap-free) -->
+    <div class="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
       {images.map((img, index) => (
-            <div class={`relative group cursor-pointer overflow-hidden rounded-sm ${img.class}`} onclick={`openLightbox(${index})`}>
+            <div class="break-inside-avoid relative group cursor-pointer overflow-hidden rounded-sm mb-4" onclick={`openLightbox(${index})`}>
               <ScrollReveal animation="fade-up" delay={(index % 4) * 0.1} duration={0.8}>
-                 <div class="w-full h-full relative">
+                 <div class="w-full relative">
                     <img 
                       src={img.src} 
                       alt={`Gallery image ${index + 1}`} 
-                      class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                      class="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-105"
                       loading="lazy"
                     />
                     
