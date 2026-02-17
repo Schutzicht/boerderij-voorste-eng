@@ -50,7 +50,7 @@ const navItems = {
 const currentNav = navItems[lang] || navItems.nl;
 ---
 
-<nav class="bg-foam-white/90 backdrop-blur-md shadow-sm fixed w-full z-50 transition-all duration-300 border-b border-dune-sand/30">
+<nav id="main-nav" class="fixed w-full z-50 transition-all duration-500 border-b border-transparent py-6 bg-foam-white/0">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-20 items-center">
       <div class="flex-shrink-0 flex items-center z-50">
@@ -273,8 +273,32 @@ const currentNav = navItems[lang] || navItems.nl;
     });
   }
 
-  // Run on initial load and view transitions
-  document.addEventListener('astro:page-load', setupMobileMenu);
-</script>
+  function setupScrollHeader() {
+      const nav = document.getElementById('main-nav');
+      const logo = document.querySelector('#main-nav svg'); // Assuming Logo is SVG
+      
+      if (!nav) return;
 
-<div class="h-20"></div> <!-- Spacer -->
+      function updateHeader() {
+          if (window.scrollY > 20) {
+              // Scrolled State
+              nav.classList.add('bg-foam-white/95', 'shadow-md', 'py-2');
+              nav.classList.remove('bg-foam-white/0', 'py-6');
+          } else {
+              // Top State
+              nav.classList.add('bg-foam-white/0', 'py-6'); // Transparentish if we want, or just less opaque
+              nav.classList.remove('bg-foam-white/95', 'shadow-md', 'py-2');
+          }
+      }
+
+      window.addEventListener('scroll', updateHeader);
+      // init
+      updateHeader();
+  }
+
+  // Run on initial load and view transitions
+  document.addEventListener('astro:page-load', () => {
+      setupMobileMenu();
+      setupScrollHeader();
+  });
+</script>
