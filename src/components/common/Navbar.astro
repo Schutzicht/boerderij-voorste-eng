@@ -50,10 +50,10 @@ const navItems = {
 const currentNav = navItems[lang] || navItems.nl;
 ---
 
-<nav id="main-nav" class="fixed w-full z-50 transition-all duration-500 border-b border-transparent py-6 bg-foam-white/0">
+<nav id="main-nav" class="fixed w-full z-50 transition-all duration-500 py-6 bg-transparent border-b border-transparent">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-20 items-center">
-      <div class="flex-shrink-0 flex items-center z-50">
+      <div class="flex-shrink-0 flex items-center z-50 logo-container transition-transform duration-500 origin-left">
         <Logo class="text-bordeaux hover:text-bordeaux-dark transition-colors" />
       </div>
       
@@ -275,19 +275,29 @@ const currentNav = navItems[lang] || navItems.nl;
 
   function setupScrollHeader() {
       const nav = document.getElementById('main-nav');
-      const logo = document.querySelector('#main-nav svg'); // Assuming Logo is SVG
+      const logoContainer = document.querySelector('#main-nav .logo-container');
       
       if (!nav) return;
 
       function updateHeader() {
-          if (window.scrollY > 20) {
-              // Scrolled State
-              nav.classList.add('bg-foam-white/95', 'shadow-md', 'py-2');
-              nav.classList.remove('bg-foam-white/0', 'py-6');
+          if (window.scrollY > 50) {
+              // Scrolled State: Compact, Glass, Shadow
+              nav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+              nav.classList.remove('bg-transparent', 'py-6', 'border-transparent');
+              
+              // Animate Logo shrinking
+              if (logoContainer) {
+                  logoContainer.classList.add('scale-90');
+              }
           } else {
-              // Top State
-              nav.classList.add('bg-foam-white/0', 'py-6'); // Transparentish if we want, or just less opaque
-              nav.classList.remove('bg-foam-white/95', 'shadow-md', 'py-2');
+              // Top State: Spacious, Transparent
+              nav.classList.add('bg-transparent', 'py-6', 'border-transparent');
+              nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+              
+              // Reset Logo
+              if (logoContainer) {
+                  logoContainer.classList.remove('scale-90');
+              }
           }
       }
 
