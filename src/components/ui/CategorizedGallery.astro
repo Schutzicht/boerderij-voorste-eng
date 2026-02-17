@@ -1,0 +1,48 @@
+---
+interface Image {
+  src: string;
+  alt: string;
+  class?: string;
+}
+
+interface Category {
+  title: string;
+  images: Image[];
+}
+
+interface Props {
+  categories: Category[];
+}
+
+const { categories } = Astro.props;
+import ParallaxImage from './ParallaxImage.astro';
+import ScrollReveal from './ScrollReveal.astro';
+---
+
+<div class="space-y-32">
+  {categories.map((category, index) => (
+    <section class="relative">
+      <ScrollReveal animation="fade-up" duration={1.0}>
+        <div class="flex items-center gap-6 mb-12">
+            <h3 class="text-3xl md:text-4xl font-heading font-light text-bordeaux">{category.title}</h3>
+            <div class="h-[1px] bg-dune-sand flex-grow opacity-50"></div>
+        </div>
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {category.images.map((image, imgIndex) => (
+           <ScrollReveal animation="fade-up" delay={imgIndex * 0.1} duration={1.2}>
+              <div class="group relative overflow-hidden rounded-sm shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer aspect-[4/3]">
+                <ParallaxImage 
+                    src={image.src} 
+                    alt={image.alt} 
+                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+              </div>
+           </ScrollReveal>
+        ))}
+      </div>
+    </section>
+  ))}
+</div>

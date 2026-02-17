@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import ScrollReveal from '../../../components/ui/ScrollReveal.astro';
-import ImageCarousel from '../../../components/ui/ImageCarousel.astro';
+import CategorizedGallery from '../../../components/ui/CategorizedGallery.astro';
 
 export function getStaticPaths() {
   return [
@@ -13,18 +13,119 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 
-const images = [
-    "/images/real/rooms/peerdestal/2602d22b-3fe3-4a70-8b4d-b3cf4cac2d5d_mw1280.webp",
-    "/images/real/rooms/peerdestal/3318d45d-6c3c-4c92-9bef-adff4a54d684_mw1280.webp",
-    "/images/real/rooms/peerdestal/507810b1-8c16-4cc2-b304-e42b6b2df1ce_mw1280.webp",
-    "/images/real/rooms/peerdestal/731c8e24-2e09-4512-b489-303987da09ef_mw1280.webp",
-    "/images/real/rooms/peerdestal/7566987e-fb14-495d-9967-b881e0f1dd4e_mw1280.webp",
-    "/images/real/rooms/peerdestal/9d390b07-e5e1-49ea-8a42-ef6bdd74247c_mw1280.webp",
-    "/images/real/rooms/peerdestal/ad94a32d-1dcb-444c-91e6-e5a041dac2f9_mw1280.webp",
-    "/images/real/rooms/peerdestal/bc008439-c105-4b6b-8182-a0f971dc3c07_mw1280.webp",
-    "/images/real/rooms/peerdestal/c52678b8-4e31-42ca-9a06-98634c545398_mw1280.webp",
-    "/images/real/rooms/peerdestal/cf395257-ac9d-4fa4-a9d3-98657b8a5b32_mw1280.webp"
-];
+const galleryCategories = {
+  nl: [
+    {
+      title: "Wonen & Ontspannen",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/woonkamer.webp", alt: "Sfeervolle woonkamer De Peerdestal" },
+        { src: "/images/real/rooms/peerdestal/categorized/woonkamer-closeup.webp", alt: "Authentieke details" },
+        { src: "/images/real/rooms/peerdestal/categorized/woonkamer-2.webp", alt: "Ruimtelijk en licht" },
+        { src: "/images/real/rooms/peerdestal/categorized/eettafel.webp", alt: "Gezellige eethoek" }
+      ]
+    },
+    {
+      title: "Koken & Genieten",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/keuken.webp", alt: "Luxe keuken" }
+      ]
+    },
+    {
+      title: "Rust & Slaap",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/slaapkamer.webp", alt: "Comfortabele slaapkamer met boxspring" }
+      ]
+    },
+    {
+      title: "Fris & Verzorgd",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/badkamer.webp", alt: "Moderne badkamer" },
+        { src: "/images/real/rooms/peerdestal/categorized/douche.webp", alt: "Inloopdouche" },
+        { src: "/images/real/rooms/peerdestal/categorized/toilet.webp", alt: "Toilet" }
+      ]
+    },
+    {
+      title: "Buitenleven",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/terras.webp", alt: "Privéterras in het groen" }
+      ]
+    }
+  ],
+  en: [
+    {
+      title: "Living & Relaxing",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/woonkamer.webp", alt: "Atmospheric living room The Horse Stable" },
+        { src: "/images/real/rooms/peerdestal/categorized/woonkamer-closeup.webp", alt: "Authentic details" },
+        { src: "/images/real/rooms/peerdestal/categorized/woonkamer-2.webp", alt: "Spacious and bright" },
+        { src: "/images/real/rooms/peerdestal/categorized/eettafel.webp", alt: "Cozy dining area" }
+      ]
+    },
+    {
+      title: "Cooking & Enjoying",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/keuken.webp", alt: "Luxury kitchen" }
+      ]
+    },
+    {
+      title: "Rest & Sleep",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/slaapkamer.webp", alt: "Comfortable bedroom with boxspring" }
+      ]
+    },
+    {
+      title: "Fresh & Cared for",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/badkamer.webp", alt: "Modern bathroom" },
+        { src: "/images/real/rooms/peerdestal/categorized/douche.webp", alt: "Walk-in shower" },
+        { src: "/images/real/rooms/peerdestal/categorized/toilet.webp", alt: "Toilet" }
+      ]
+    },
+    {
+      title: "Outdoor Living",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/terras.webp", alt: "Private terrace in the green" }
+      ]
+    }
+  ],
+  de: [
+    {
+      title: "Wohnen & Entspannen",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/woonkamer.webp", alt: "Stimmungsvolles Wohnzimmer Der Pferdestall" },
+        { src: "/images/real/rooms/peerdestal/categorized/woonkamer-closeup.webp", alt: "Authentische Details" },
+        { src: "/images/real/rooms/peerdestal/categorized/woonkamer-2.webp", alt: "Geräumig und hell" },
+        { src: "/images/real/rooms/peerdestal/categorized/eettafel.webp", alt: "Gemütliche Essecke" }
+      ]
+    },
+    {
+      title: "Kochen & Genießen",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/keuken.webp", alt: "Luxusküche" }
+      ]
+    },
+    {
+      title: "Ruhe & Schlaf",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/slaapkamer.webp", alt: "Komfortables Schlafzimmer mit Boxspring" }
+      ]
+    },
+    {
+      title: "Frisch & Gepflegt",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/badkamer.webp", alt: "Modernes Badezimmer" },
+        { src: "/images/real/rooms/peerdestal/categorized/douche.webp", alt: "Begehbare Dusche" },
+        { src: "/images/real/rooms/peerdestal/categorized/toilet.webp", alt: "WC" }
+      ]
+    },
+    {
+      title: "Leben im Freien",
+      images: [
+        { src: "/images/real/rooms/peerdestal/categorized/terras.webp", alt: "Private Terrasse im Grünen" }
+      ]
+    }
+  ]
+};
 
 const content = {
   nl: {
@@ -75,6 +176,7 @@ const content = {
 };
 
 const t = content[lang] || content.nl;
+const categories = galleryCategories[lang] || galleryCategories.nl;
 ---
 
 <Layout title={`Boerderij Voorste Eng - ${t.title}`} lang={lang}>
@@ -92,9 +194,7 @@ const t = content[lang] || content.nl;
 
     <!-- Gallery / Carousel -->
     <div class="mb-24">
-        <ScrollReveal animation="fade-up" delay={0.2}>
-            <ImageCarousel images={images} alt={t.title} />
-        </ScrollReveal>
+        <CategorizedGallery categories={categories} />
     </div>
 
     <!-- Info / Rules Section -->

@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import ScrollReveal from '../../../components/ui/ScrollReveal.astro';
-import ImageCarousel from '../../../components/ui/ImageCarousel.astro';
+import CategorizedGallery from '../../../components/ui/CategorizedGallery.astro';
 
 export function getStaticPaths() {
   return [
@@ -13,17 +13,101 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 
-const images = [
-    "/images/real/rooms/oude-schuur/424671ca-f79e-4955-8a75-98dc99c25599_mw1280.webp",
-    "/images/real/rooms/oude-schuur/4420ac25-c1e7-4907-a906-6b8d4ffc5a99_mw1280.webp",
-    "/images/real/rooms/oude-schuur/56743abb-f775-4cc9-83e8-eb8fc950de53_mw1280.webp",
-    "/images/real/rooms/oude-schuur/60328597-342f-41a7-89a7-8ff62af81f66_mw1280.webp",
-    "/images/real/rooms/oude-schuur/681f8b9e-a38f-4049-baec-19f2dbc48dfe_mw1280.webp",
-    "/images/real/rooms/oude-schuur/a3518df0-c924-4b67-a631-382506cea249_mw1280.webp",
-    "/images/real/rooms/oude-schuur/b5d1ac60-a7f8-4cda-a031-1d978f5828ae_mw1280.webp",
-    "/images/real/rooms/oude-schuur/be7d7586-58e5-4d8a-a464-eb03ed3cfbc4_mw1280.webp",
-    "/images/real/rooms/oude-schuur/eab40396-c733-407b-94c9-8c0ee15e11ac_mw1280.webp"
-];
+const galleryCategories = {
+  nl: [
+    {
+      title: "Wonen & Ontspannen",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/woonkamer.webp", alt: "Sfeervolle woonkamer De Oude Schuur" },
+        { src: "/images/real/rooms/oude-schuur/categorized/woonkamer-zitgedeelte.webp", alt: "Comfortabele zithoek" },
+        { src: "/images/real/rooms/oude-schuur/categorized/woonkamer-closeup.webp", alt: "Authentieke details" }
+      ]
+    },
+    {
+      title: "Koken & Genieten",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/keuken.webp", alt: "Luxe keuken met alle voorzieningen" },
+        { src: "/images/real/rooms/oude-schuur/categorized/koffiemachine.webp", alt: "Nespresso koffiemachine" }
+      ]
+    },
+    {
+      title: "Rust & Slaap",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/slaapkamer.webp", alt: "Comfortabele slaapkamer" }
+      ]
+    },
+    {
+      title: "Fris & Verzorgd",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/badkamer.webp", alt: "Moderne badkamer" },
+        { src: "/images/real/rooms/oude-schuur/categorized/douche.webp", alt: "Ruime inloopdouche" },
+        { src: "/images/real/rooms/oude-schuur/categorized/toilet.webp", alt: "Separaat toilet" }
+      ]
+    }
+  ],
+  en: [
+    {
+      title: "Living & Relaxing",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/woonkamer.webp", alt: "Atmospheric living room The Old Barn" },
+        { src: "/images/real/rooms/oude-schuur/categorized/woonkamer-zitgedeelte.webp", alt: "Comfortable seating area" },
+        { src: "/images/real/rooms/oude-schuur/categorized/woonkamer-closeup.webp", alt: "Authentic details" }
+      ]
+    },
+    {
+      title: "Cooking & Enjoying",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/keuken.webp", alt: "Luxury kitchen with all amenities" },
+        { src: "/images/real/rooms/oude-schuur/categorized/koffiemachine.webp", alt: "Nespresso coffee machine" }
+      ]
+    },
+    {
+      title: "Rest & Sleep",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/slaapkamer.webp", alt: "Comfortable bedroom" }
+      ]
+    },
+    {
+      title: "Fresh & Cared for",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/badkamer.webp", alt: "Modern bathroom" },
+        { src: "/images/real/rooms/oude-schuur/categorized/douche.webp", alt: "Spacious walk-in shower" },
+        { src: "/images/real/rooms/oude-schuur/categorized/toilet.webp", alt: "Separate toilet" }
+      ]
+    }
+  ],
+  de: [
+    {
+      title: "Wohnen & Entspannen",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/woonkamer.webp", alt: "Stimmungsvolles Wohnzimmer Die Alte Scheune" },
+        { src: "/images/real/rooms/oude-schuur/categorized/woonkamer-zitgedeelte.webp", alt: "Komfortable Sitzecke" },
+        { src: "/images/real/rooms/oude-schuur/categorized/woonkamer-closeup.webp", alt: "Authentische Details" }
+      ]
+    },
+    {
+      title: "Kochen & Genießen",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/keuken.webp", alt: "Luxusküche mit allen Annehmlichkeiten" },
+        { src: "/images/real/rooms/oude-schuur/categorized/koffiemachine.webp", alt: "Nespresso-Kaffeemaschine" }
+      ]
+    },
+    {
+      title: "Ruhe & Schlaf",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/slaapkamer.webp", alt: "Komfortables Schlafzimmer" }
+      ]
+    },
+    {
+      title: "Frisch & Gepflegt",
+      images: [
+        { src: "/images/real/rooms/oude-schuur/categorized/badkamer.webp", alt: "Modernes Badezimmer" },
+        { src: "/images/real/rooms/oude-schuur/categorized/douche.webp", alt: "Geräumige begehbare Dusche" },
+        { src: "/images/real/rooms/oude-schuur/categorized/toilet.webp", alt: "Separates WC" }
+      ]
+    }
+  ]
+};
 
 const content = {
   nl: {
@@ -74,6 +158,7 @@ const content = {
 };
 
 const t = content[lang] || content.nl;
+const categories = galleryCategories[lang] || galleryCategories.nl;
 ---
 
 <Layout title={`Boerderij Voorste Eng - ${t.title}`} lang={lang}>
@@ -91,9 +176,7 @@ const t = content[lang] || content.nl;
 
     <!-- Gallery / Carousel -->
     <div class="mb-24">
-        <ScrollReveal animation="fade-up" delay={0.2}>
-            <ImageCarousel images={images} alt={t.title} />
-        </ScrollReveal>
+        <CategorizedGallery categories={categories} />
     </div>
 
     <!-- Info / Rules Section -->
