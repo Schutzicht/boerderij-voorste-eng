@@ -197,3 +197,13 @@ const images = [
     if (e.key === 'Escape') closeLightbox();
   });
 </script>
+
+<style>
+  /* Force visibility on mobile to prevent ScrollReveal from hiding images if JS/Observer fails */
+  @media (max-width: 768px) {
+    :global(.mobile-reveal-force) {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
