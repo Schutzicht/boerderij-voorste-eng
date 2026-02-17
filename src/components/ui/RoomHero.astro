@@ -1,0 +1,53 @@
+---
+import ScrollReveal from './ScrollReveal.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  image: string;
+  transitionName?: string;
+}
+
+const { title, subtitle, image, transitionName } = Astro.props;
+---
+
+<section class="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+  
+  <!-- Background Image with Morph Transition -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src={image} 
+      alt={title} 
+      class="w-full h-full object-cover"
+      transition:name={transitionName}
+    />
+    <div class="absolute inset-0 bg-stone-900/40"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-12">
+    
+    {subtitle && (
+        <ScrollReveal animation="fade-up" duration={1.2} delay={0.2}>
+            <p class="text-white/90 text-sm md:text-base uppercase tracking-[0.3em] mb-4 font-medium">
+                {subtitle}
+            </p>
+        </ScrollReveal>
+    )}
+
+    <ScrollReveal animation="fade-up" duration={1.5} delay={0.4}>
+        <h1 class="text-5xl md:text-7xl lg:text-8xl text-white font-heading font-light tracking-tight leading-none drop-shadow-sm">
+            {title}
+        </h1>
+    </ScrollReveal>
+
+  </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce text-white/50">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+    </svg>
+  </div>
+
+</section>

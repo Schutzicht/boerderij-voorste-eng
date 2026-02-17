@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import ScrollReveal from '../../../components/ui/ScrollReveal.astro';
 import CategorizedGallery from '../../../components/ui/CategorizedGallery.astro';
+import RoomHero from '../../../components/ui/RoomHero.astro';
 
 export function getStaticPaths() {
   return [
@@ -181,16 +182,21 @@ const categories = galleryCategories[lang] || galleryCategories.nl;
 
 <Layout title={`Boerderij Voorste Eng - ${t.title}`} lang={lang}>
   
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-    
-    <!-- Intro Section -->
-    <div class="text-center max-w-3xl mx-auto mb-16">
+    <RoomHero 
+        title={t.headline} 
+        subtitle="Otterlo, Hoge Veluwe"
+        image="/images/real/rooms/peerdestal/2602d22b-3fe3-4a70-8b4d-b3cf4cac2d5d_mw1280.webp"
+        transitionName="hero-peerdestal"
+    />
+
+    <!-- Intro Text -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 mt-24 px-4">
         <ScrollReveal animation="fade-up">
-            <h1 class="font-heading text-5xl md:text-7xl font-light mb-8 text-bordeaux tracking-tight">{t.headline}</h1>
             <p class="text-stone-600 text-xl font-light leading-relaxed">{t.intro}</p>
             <div class="w-24 h-[1px] bg-bordeaux/30 mx-auto mt-12"></div>
         </ScrollReveal>
-    </div>
+      </div>
 
     <!-- Gallery / Carousel -->
     <div class="mb-24">
@@ -225,5 +231,6 @@ const categories = galleryCategories[lang] || galleryCategories.nl;
         </ScrollReveal>
     </div>
 
+  </div>
   </div>
 </Layout>

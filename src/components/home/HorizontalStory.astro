@@ -1,0 +1,170 @@
+---
+const { lang } = Astro.props;
+
+const content = {
+  nl: {
+    title: "Een Reis door de Tijd",
+    subtitle: "Van Pachterswoning tot Luxe Verblijf",
+    cards: [
+      {
+        year: "1900",
+        title: "De Oorsprong",
+        text: "Boerderij Voorste Eng kent een rijke geschiedenis als pachterswoning van het landgoed.",
+        img: "/images/real/exterior/exterior-1.avif"
+      },
+      {
+        year: "1950",
+        title: "Het Boerenleven",
+        text: "Generaties lang werd hier geleefd en gewerkt op het ritme van de seizoenen.",
+        img: "/images/real/exterior/exterior-3.avif"
+      },
+      {
+        year: "2023",
+        title: "De Transformatie",
+        text: "Met behoud van authentieke details is de boerderij getransformeerd tot luxe verblijf.",
+        img: "/images/real/exterior/exterior-7.avif"
+      },
+      {
+        year: "Nu",
+        title: "Uw Thuis",
+        text: "Een plek waar rust, ruimte en comfort samenkomen aan de rand van de Veluwe.",
+        img: "/images/real/exterior/exterior-6.avif"
+      }
+    ]
+  },
+  en: {
+    title: "A Journey Through Time",
+    subtitle: "From Tenant Farm to Luxury Stay",
+    cards: [
+      {
+        year: "1900",
+        title: "The Origin",
+        text: "Farm Voorste Eng has a rich history as a tenant farm of the estate.",
+        img: "/images/real/exterior/exterior-1.avif"
+      },
+      {
+        year: "1950",
+        title: "Farm Life",
+        text: "For generations, people lived and worked here to the rhythm of the seasons.",
+        img: "/images/real/exterior/exterior-3.avif"
+      },
+      {
+        year: "2023",
+        title: "The Transformation",
+        text: "Preserving authentic details, the farm has been transformed into a luxury stay.",
+        img: "/images/real/exterior/exterior-7.avif"
+      },
+      {
+        year: "Now",
+        title: "Your Home",
+        text: "A place where peace, space, and comfort meet on the edge of the Veluwe.",
+        img: "/images/real/exterior/exterior-6.avif"
+      }
+    ]
+  },
+  de: {
+    title: "Eine Reise durch die Zeit",
+    subtitle: "Vom Pächterhaus zum Luxusaufenthalt",
+    cards: [
+      {
+        year: "1900",
+        title: "Der Ursprung",
+        text: "Der Bauernhof Voorste Eng hat eine reiche Geschichte als Pächterhaus des Landguts.",
+        img: "/images/real/exterior/exterior-1.avif"
+      },
+      {
+        year: "1950",
+        title: "Das Bauernleben",
+        text: "Generationen lebten und arbeiteten hier im Rhythmus der Jahreszeiten.",
+        img: "/images/real/exterior/exterior-3.avif"
+      },
+      {
+        year: "2023",
+        title: "Die Transformation",
+        text: "Unter Bewahrung authentischer Details wurde der Bauernhof in einen Luxusaufenthalt verwandelt.",
+        img: "/images/real/exterior/exterior-7.avif"
+      },
+      {
+        year: "Jetzt",
+        title: "Ihr Zuhause",
+        text: "Ein Ort, an dem Ruhe, Raum und Komfort am Rande der Veluwe zusammenkommen.",
+        img: "/images/real/exterior/exterior-6.avif"
+      }
+    ]
+  }
+};
+
+const t = content[lang] || content.nl;
+import ParallaxImage from '../ui/ParallaxImage.astro';
+---
+
+<!-- Horizontal Scroll Section -->
+<section id="story-section" class="relative bg-stone-900 text-white overflow-hidden">
+  
+  <div class="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+      
+      <!-- Intro Text (Absolute) -->
+      <div class="absolute top-12 left-8 md:top-24 md:left-24 z-20 max-w-md">
+          <p class="text-bordeaux text-sm uppercase tracking-[0.2em] mb-4">{t.subtitle}</p>
+          <h2 class="text-4xl md:text-6xl font-heading font-light leading-tight">{t.title}</h2>
+      </div>
+
+      <!-- Horizontal Track -->
+      <div id="horizontal-track" class="flex gap-12 md:gap-24 px-8 md:px-24 w-max translate-x-[20vw]">
+          
+          {t.cards.map((card, index) => (
+             <div class="relative w-[80vw] md:w-[60vw] lg:w-[45vw] flex-shrink-0 group">
+                <div class="aspect-[16/9] overflow-hidden rounded-sm opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+                    <img 
+                        src={card.img} 
+                        alt={card.title} 
+                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-110"
+                    />
+                </div>
+                <div class="mt-8 flex gap-6 items-start opacity-50 group-hover:opacity-100 transition-opacity duration-700 delay-100">
+                    <span class="text-6xl font-heading font-thin text-white/20 -mt-2">{card.year}</span>
+                    <div>
+                        <h3 class="text-2xl font-heading font-light mb-2">{card.title}</h3>
+                        <p class="text-white/60 font-light max-w-sm leading-relaxed">{card.text}</p>
+                    </div>
+                </div>
+             </div>
+          ))}
+
+      </div>
+
+      <!-- Drag Indicator -->
+      <div class="absolute bottom-12 right-12 flex items-center gap-4 text-white/30 text-sm tracking-widest uppercase">
+         <span>Scroll</span>
+         <div class="w-16 h-[1px] bg-white/30"></div>
+      </div>
+  </div>
+
+  <!-- Spacer to allowing scrolling the length of the track -->
+  <div class="h-[400vh]"></div>
+
+</section>
+
+<script>
+    import { animate, scroll } from "motion";
+
+    document.addEventListener('astro:page-load', () => {
+        const section = document.getElementById('story-section');
+        const track = document.getElementById('horizontal-track');
+
+        if (section && track) {
+            // Determine scroll distance
+            // We want to scroll the track to the left until the end is visible
+            // The track width minus viewport width is roughly the distance
+            const scrollDistance = track.scrollWidth - window.innerWidth + 200; 
+
+            scroll(
+                animate(track, { transform: [`translateX(0px)`, `translateX(-${scrollDistance}px)`] }),
+                { 
+                    target: section, 
+                    offset: ["start start", "end end"] 
+                }
+            );
+        }
+    });
+</script>
